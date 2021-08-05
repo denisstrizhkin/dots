@@ -1,0 +1,4 @@
+#HttpOnly_.youtube.com	TRUE	/	TRUE	1643704454	VISITOR_INFO1_LIVE	Bl3_nLVmHi0	None
+#HttpOnly_.youtube.com	TRUE	/	TRUE	1629362100	hideBrowserUpgradeBox	true	None
+#HttpOnly_.youtube.com	TRUE	/	TRUE	1628168073	GPS	1	None
+.youtube.com	TRUE	/	TRUE	1691238273	PREF	tz=Europe.Moscow	None
