@@ -13,8 +13,9 @@ fi
 
 # other stuff
 exec pulseaudio --start --exit-idle-time=-1 &
-exec feh --bg-scale /home/fox/Pictures/gold-picture_072508136_204.jpg &
+exec feh --bg-scale /home/fox/Pictures/bg_img.jpg &
 exec picom &
+exec wal -i /home/fox/Pictures/bg_img.jpg &
 
 # dwm
 while true; do
