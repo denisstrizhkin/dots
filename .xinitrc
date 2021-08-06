@@ -12,4 +12,5 @@ if [ -f "$usermodmap" ]; then
 fi
 
 exec pulseaudio --start --exit-idle-time=-1 &
-exec dwm
+exec dwm &
+exec feh --bg-scale /home/fox/Pictures/gold-picture_072508136_204.jpg
