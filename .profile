@@ -2,6 +2,8 @@ export EDITOR="vim"
 export TERMINAL="st"
 export BROWSER="icecat"
 
+export PATH="$PATH:/home/fox/.local/bin"
+
 alias s_v="sudo vim"
 alias s_r="sudo reboot"
 alias s_p="sudo poweroff"
