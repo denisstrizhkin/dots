@@ -12,10 +12,11 @@ if [ -f "$usermodmap" ]; then
 fi
 
 # other stuff
+# exec wal -R &
+# exec wal -i /home/fox/Pictures/bg_img.jpg &
 exec pulseaudio --start --exit-idle-time=-1 &
 exec feh --bg-scale /home/fox/Pictures/bg_img.jpg &
 exec picom &
-exec wal -i /home/fox/Pictures/bg_img.jpg &
 
 # dwm
 while true; do
