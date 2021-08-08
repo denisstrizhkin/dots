@@ -15,6 +15,9 @@ fi
 # exec wal -R &
 # exec wal -i /home/fox/Pictures/bg_img.jpg &
 exec pulseaudio --start --exit-idle-time=-1 &
+# exec pipewire &
+# exec pipewire-pulse &
+# exec pipewire-media-session &
 exec feh --bg-scale /home/fox/Pictures/bg_img.jpg &
 exec picom &
 
