@@ -13,6 +13,7 @@ fi
 
 exec pulseaudio --start --exit-idle-time=-1 &
 exec feh --bg-scale /home/denis/Pictures/bg_img.jpg &
+exec barupdate.sh &
 # exec picom &
 
 # dwm

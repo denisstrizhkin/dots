@@ -3,6 +3,7 @@ export TERMINAL="st"
 export BROWSER="surf"
 
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/bin/DWM_Scripts"
 
 alias s_xi="sudo xbps-install"
 alias s_xr="sudo xbps-remove"
