@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#just for the test
+
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 
