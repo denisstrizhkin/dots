@@ -11,15 +11,9 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-# other stuff
-# exec wal -R &
-# exec wal -i /home/fox/Pictures/bg_img.jpg &
 exec pulseaudio --start --exit-idle-time=-1 &
-# exec pipewire &
-# exec pipewire-pulse &
-# exec pipewire-media-session &
-exec feh --bg-scale /home/fox/Pictures/bg_img.jpg &
-exec picom &
+exec feh --bg-scale /home/denis/Pictures/bg_img.jpg &
+# exec picom &
 
 # dwm
 while true; do
