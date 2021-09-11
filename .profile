@@ -4,6 +4,9 @@ export BROWSER="surf"
 
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/bin/simple-dwm-bar"
+export VIM_LATEX_FOLDER="$HOME/Documents/latex/vimlatex"
+export VIM_LATEX_TEMPLATE_DIR="$VIM_LATEX_FOLDER/templates"
+export VIM_LATEX_OUTPUT="/tmp"
 
 alias s_xi="sudo xbps-install"
 alias s_xr="sudo xbps-remove"
