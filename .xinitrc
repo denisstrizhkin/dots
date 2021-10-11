@@ -16,7 +16,8 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 exec pulseaudio --start --exit-idle-time=-1 &
-#exec feh --bg-scale /home/denis/Pictures/bg_img.jpg &
+
+# exec feh --bg-scale /home/denis/Pictures/bg_img.jpg &
 exec barupdate.sh &
 exec fcitx5 &
 exec dbus-launch thunar --daemon &
