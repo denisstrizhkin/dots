@@ -16,12 +16,14 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 exec pulseaudio --start --exit-idle-time=-1 &
-exec feh --bg-scale /home/denis/Pictures/bg_img.jpg &
+#exec feh --bg-scale /home/denis/Pictures/bg_img.jpg &
 exec barupdate.sh &
-exec fcitx &
-# exec picom &
+exec fcitx5 &
+exec dbus-launch thunar --daemon &
+exec picom --experimental-backends --backend glx -b &
 
 # dwm
 while true; do
-	dwm >/dev/null 2>&1
+	#dbus-launch --sh-syntax --exit-with-session dwm >/dev/null 2>&1
+  dbus-launch dwm >/dev/null 2>&1
 done
