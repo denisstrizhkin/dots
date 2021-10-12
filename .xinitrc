@@ -21,7 +21,8 @@ exec pulseaudio --start --exit-idle-time=-1 &
 exec barupdate.sh &
 exec fcitx5 &
 exec dbus-launch thunar --daemon &
-exec picom --experimental-backends --backend glx -b &
+exec dbus-launch picom --experimental-backends --backend glx -b &
+exec redshift &
 
 # dwm
 while true; do
