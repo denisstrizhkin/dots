@@ -1,0 +1,12 @@
+#!/bin/sh
+
+alias xi="sudo xbps-install"
+
+xi -Su
+xi -y xorg base-devel cmake neofetch firefox feh htop neovim
+xi -y picom redshift noto-fonts-cjk noto-fonts-emoji noto-fonts-ttf 
+xi -y noto-fonts-ttf-extra fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-gtk+2
+xi -y fcitx5-gtk+3 fcitx5-mozc fcitx5-qt fcitx5-qt5 keepassxc telegram-desktop
+xi -y vscode virtualbox-ose pulseaudio alsa-plugins-pulseaudio pulsemixer
+xi -y ranger torbrowser-launcher qbittorrent vlc ueberzug youtube-dl texlive-full
+xi -y nfs-utils 
