@@ -1,0 +1,15 @@
+{
+    "editor.fontFamily": "monospace",
+    "explorer.confirmDelete": false,
+    "terminal.external.linuxExec": "st",
+    "editor.tabSize": 2,
+    "window.zoomLevel": 1,
+    "editor.rulers": [ 80 ],
+    "vim.foldfix": true,
+    "vim.handleKeys": {
+        "<C-k>": false
+    },
+    "editor.codeLensFontFamily": "monospace",
+    "editor.inlayHints.fontFamily": "monospace",
+    "debug.console.fontFamily": "monospace"
+}
