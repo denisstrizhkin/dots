@@ -2,4 +2,4 @@
 #
 # This is run by runit in stage 3 after the services are stopped
 # (see /etc/runit/3).
-/home/denis/.local/bin/brightness_save/finish
+/home/denis/.local/bin/brightness/load

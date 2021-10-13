@@ -4,4 +4,4 @@
 # (see /etc/runit/2).
 setfont ter-u32n
 
-/home/denis/.local/bin/brightness_save/run
+/home/denis/.local/bin/brightness/save
