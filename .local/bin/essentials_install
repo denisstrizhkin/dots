@@ -10,4 +10,4 @@ xi -y fcitx5-gtk+3 fcitx5-mozc fcitx5-qt fcitx5-qt5 keepassxc telegram-desktop
 xi -y vscode virtualbox-ose pulseaudio alsa-plugins-pulseaudio pulsemixer
 xi -y ranger torbrowser-launcher qbittorrent vlc ueberzug youtube-dl texlive-full
 xi -y nfs-utils freetype-devel libX11-devel libXft-devel libXinerama-devel
-xi -y github-cli terminus-font rsync zathura zathura-pdf-poppler
+xi -y github-cli terminus-font rsync zathura zathura-pdf-poppler xkb-switch
