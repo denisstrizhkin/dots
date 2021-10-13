@@ -1,0 +1,6 @@
+#!/bin/sh
+
+DIR=$(dirname $0)
+BACKLIGHT_NAME=amdgpu_bl0
+
+cat $DIR/brightness_value > /sys/class/backlight/$BACKLIGHT_NAME/brightness
