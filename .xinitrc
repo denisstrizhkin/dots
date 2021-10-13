@@ -20,12 +20,10 @@ exec pulseaudio --start --exit-idle-time=-1 &
 # exec feh --bg-scale /home/denis/Pictures/bg_img.jpg &
 exec barupdate.sh &
 exec fcitx5 &
-exec dbus-launch thunar --daemon &
-exec dbus-launch picom --experimental-backends --backend glx -b &
+exec picom --experimental-backends --backend glx -b &
 exec redshift &
 
 # dwm
 while true; do
-	#dbus-launch --sh-syntax --exit-with-session dwm >/dev/null 2>&1
-  dbus-launch dwm >/dev/null 2>&1
+  dwm >/dev/null 2>&1
 done
