@@ -1,0 +1,16 @@
+#!/bin/sh
+
+DIR=$(dirname $0)
+alias g_dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+
+cd $DIR/../../..
+
+cp -rf dots/. ./
+rm -rf dots
+
+mkdir .dotfiles
+
+cp -rf .git/. .dotfiles/
+rm -rf .git
+
+g_dot config --local status.showUntrackedFiles no
