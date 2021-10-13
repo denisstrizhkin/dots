@@ -22,6 +22,7 @@ exec barupdate.sh &
 exec fcitx5 &
 exec picom --experimental-backends --backend glx -b &
 exec redshift &
+# exec xrandr --output Virtual1 --mode 1920x1080 &
 
 # dwm
 while true; do
