@@ -8,6 +8,8 @@ export VIM_LATEX_FOLDER="$HOME/Documents/latex/vimlatex"
 export VIM_LATEX_TEMPLATE_DIR="$VIM_LATEX_FOLDER/templates"
 export VIM_LATEX_OUTPUT="/tmp"
 export _JAVA_AWT_WM_NONREPARENTING=1
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export QT_QPA_PLATFORMTHEME=gtk2
 
 alias s_xi="sudo xbps-install"
 alias s_xr="sudo xbps-remove"
