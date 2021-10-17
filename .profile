@@ -14,7 +14,10 @@ export QT_QPA_PLATFORMTHEME=gtk2
 alias s_xi="sudo xbps-install"
 alias s_xr="sudo xbps-remove"
 alias s_xq="sudo xbps-query"
+
 alias s_v="sudo vim"
+
 alias s_r="sudo reboot"
 alias s_p="sudo poweroff"
+
 alias g_dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
