@@ -14,6 +14,8 @@ export QT_QPA_PLATFORMTHEME=gtk2
 alias s_xi="sudo xbps-install"
 alias s_xr="sudo xbps-remove"
 alias s_xq="sudo xbps-query"
+alias s_xi_snf="s_xi --repository hostdir/binpkgs/nonfree"
+alias s_xi_s="s_xi --repository hostdir/binpkgs"
 
 alias s_v="sudo vim"
 
