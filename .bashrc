@@ -6,3 +6,7 @@ source ~/.profile
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
+
+if [ -z "${DISPLAY}" ] && [ "$(tty)" = "/dev/tty1" ]; then
+  exec startx
+fi
