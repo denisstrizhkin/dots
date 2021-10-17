@@ -1,6 +1,6 @@
-export EDITOR="vim"
+export EDITOR="neovim"
 export TERMINAL="st"
-export BROWSER="surf"
+export BROWSER="firefox"
 
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/bin/simple-dwm-bar"
