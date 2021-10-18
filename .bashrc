@@ -8,5 +8,5 @@ alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
 if [ -z "${DISPLAY}" ] && [ "$(tty)" = "/dev/tty1" ]; then
-  exec startx
+  exec startx "$XDG_CONFIG_HOME/x11/xinitrc"
 fi
