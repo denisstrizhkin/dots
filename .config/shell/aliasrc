@@ -1,0 +1,17 @@
+f_mpv () { mpv --no-input-default-bindings "$1" & disown; }
+
+alias s_xi="sudo xbps-install"
+alias s_xr="sudo xbps-remove"
+alias s_xq="sudo xbps-query"
+alias s_xi_snf="s_xi --repository hostdir/binpkgs/nonfree"
+alias s_xi_s="s_xi --repository hostdir/binpkgs"
+
+alias s_v="sudo vim"
+
+alias s_r="sudo reboot"
+alias s_p="sudo poweroff"
+
+alias g_dot="git --git-dir=$XDG_CONFIG_HOME/dotfiles/ --work-tree=$HOME"
+
+alias m_phone="go-mtpfs $HOME/mnt/phone > /dev/null 2>&1 &"
+alias u_phone="sudo umount $HOME/mnt/phone"
