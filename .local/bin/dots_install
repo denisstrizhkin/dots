@@ -1,16 +1,17 @@
 #!/bin/sh
 
 DIR=$(dirname $0)
+DOTS_DIR="$HOME/.config/dotfiles"
 alias g_dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
-cd $DIR/../../..
+cd $HOME
 
-cp -rf dots/. ./
+cp -rf dots/. $HOME/
 rm -rf dots
 
-mkdir .dotfiles
+mkdir $DOTS_DIR
 
-cp -rf .git/. .dotfiles/
+cp -rf .git/. $DOTS_DIR
 rm -rf .git
 
 g_dot config --local status.showUntrackedFiles no
