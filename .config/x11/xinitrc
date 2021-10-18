@@ -10,7 +10,7 @@ exec fcitx5 &
 # exec feh --bg-scale /home/denis/Pictures/bg_img.jpg &
 exec barupdate.sh &
 exec xrandr --output eDP --mode 1920x1080 --rate 60.00 --dpi 125 &
-xrdb -merge $HOME/.Xresources
+xrdb -merge "$XDG_CONFIG_HOME/x11/xresources"
 exec picom --experimental-backends &
 exec redshift &
 
