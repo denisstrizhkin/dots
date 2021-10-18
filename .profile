@@ -1,4 +1,4 @@
-export EDITOR="neovim"
+export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="firefox"
 
@@ -27,4 +27,4 @@ alias g_dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias m_phone="go-mtpfs $HOME/mnt/phone > /dev/null 2>&1 &"
 alias u_phone="sudo umount $HOME/mnt/phone"
 
-mpv () { nohup mpv --no-input-default-bindings "$1" & }
+f_mpv () { mpv --no-input-default-bindings "$1" & disown }
