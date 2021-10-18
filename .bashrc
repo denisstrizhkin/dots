@@ -1,5 +1,5 @@
 # .bashrc
-source ~/.profile
+source $HOME/.config/shell/profile
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
