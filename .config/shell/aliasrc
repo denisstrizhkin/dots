@@ -1,5 +1,7 @@
 f_mpv () { mpv --no-input-default-bindings "$1" & disown; }
 
+alias ls="ls --color=auto"
+
 alias s_xi="sudo xbps-install"
 alias s_xr="sudo xbps-remove"
 alias s_xq="sudo xbps-query"
