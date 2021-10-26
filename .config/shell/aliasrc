@@ -15,5 +15,5 @@ alias s_p="sudo poweroff"
 
 alias g_dot="git --git-dir=$XDG_CONFIG_HOME/dotfiles/ --work-tree=$HOME"
 
-alias m_phone="go-mtpfs $HOME/mnt/phone > /dev/null 2>&1 &"
 alias u_phone="sudo umount $HOME/mnt/phone"
+alias m_phone="u_phone; go-mtpfs $HOME/mnt/phone > /dev/null 2>&1 &"
