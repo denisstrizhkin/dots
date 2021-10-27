@@ -5,18 +5,18 @@ alias cp="cp -v"
 alias mv="mv -v"
 alias rm="rm -v"
 
-alias s_xi="sudo xbps-install"
-alias s_xr="sudo xbps-remove"
-alias s_xq="sudo xbps-query"
+alias s_xi="doas xbps-install"
+alias s_xr="doas xbps-remove"
+alias s_xq="doas xbps-query"
 alias s_xi_snf="s_xi --repository hostdir/binpkgs/nonfree"
 alias s_xi_s="s_xi --repository hostdir/binpkgs"
 
-alias s_v="sudo vim"
+alias s_v="doas vim"
 
-alias s_r="sudo reboot"
-alias s_p="sudo poweroff"
+alias s_r="doas reboot"
+alias s_p="doas poweroff"
 
 alias g_dot="git --git-dir=$XDG_CONFIG_HOME/dotfiles/ --work-tree=$HOME"
 
-alias u_phone="sudo umount $HOME/mnt/phone"
+alias u_phone="doas umount $HOME/mnt/phone"
 alias m_phone="u_phone; go-mtpfs $HOME/mnt/phone > /dev/null 2>&1 &"
