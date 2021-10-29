@@ -5,6 +5,8 @@ alias cp="cp -v"
 alias mv="mv -v"
 alias rm="rm -v"
 
+alias ytfzf="ytfzf -fD"
+
 alias s_xi="doas xbps-install"
 alias s_xr="doas xbps-remove"
 alias s_xq="doas xbps-query"
