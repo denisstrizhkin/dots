@@ -13,5 +13,6 @@ exec xrandr --output eDP --mode 1920x1080 --rate 60.00 --dpi 125 &
 xrdb -merge "$XDG_CONFIG_HOME/x11/xresources"
 exec picom --experimental-backends &
 exec redshift &
+exec spotifyd -b pulseaudio --no-daemon &
 
 exec dwm
