@@ -1,9 +1,9 @@
 f_mpv () { mpv --no-input-default-bindings "$1" & disown; }
 
 alias ls="ls --color=auto"
-alias cp="cp -v"
-alias mv="mv -v"
-alias rm="rm -v"
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -iv"
 
 alias ytfzf="ytfzf -fD"
 
