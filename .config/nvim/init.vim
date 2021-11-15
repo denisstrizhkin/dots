@@ -19,15 +19,8 @@ let g:deoplete#sources#clang#std = {
       \ 'objcpp': 'c++17'
 \}
 let g:deoplete#sources#clang#flags = [
-      \ "-Wno-unused-variable",
-      \ "-Wno-infinite-recursion",
-      \ "-Werror=implicit-function-declaration",
-      \ "-Wshadow",
-      \ "-Wno-shadow-field-in-constructor-modified",
-      \ "-Wno-shadow-ivar",
-      \ "-Wuninitialized",
-      \ "-Wunused-label",
-      \ "-Wunused-lambda-capture"
+      \ "-Wall",
+      \ "-std=c++17",
 \]
 "end deoplete
 
@@ -37,16 +30,28 @@ let g:ale_linters = {
       \ 'c': ['clang', 'clangtidy']
 \}
 
-let g:ale_cpp_cc_options = '-Wall -std=c++17 -Wno-unused-variable -Wno-infinite-recursion -Werror=implicit-function-declaration -Wshadow -Wno-shadow-field-in-constructor-modified -Wno-shadow-ivar -Wuninitialized -Wunused-label -Wunused-lambda-capture'
+let g:ale_fixers = {
+      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \ 'cpp': [ 'clangtidy', 'clang-format' ]
+\}
 
-let g:ale_cpp_clangtidy_options = '-Wall -std=c++17 -Wno-unused-variable -Wno-infinite-recursion -Werror=implicit-function-declaration -Wshadow -Wno-shadow-field-in-constructor-modified -Wno-shadow-ivar -Wuninitialized -Wunused-label -Wunused-lambda-capture'
+let g:ale_fix_on_save = 1
+
+let g:ale_cpp_cc_options = '-Wall -std=c++17'
+let g:ale_cpp_clangtidy_options = '-Wall -std=c++17'
 
 let g:ale_cpp_clangtidy_checks = [
       \ 'modernize-*',
-      \ 'clang-analyzer-*', 
+      \ '-modernize-use-trailing-return-type*',
+      \ 'clang-analyzer-*',
       \ 'google-*',
       \ 'misc-*'
 \]
+
+let g:ale_c_clangformat_style_option='{BasedOnStyle: Google, ColumnLimit: 80, Language: Cpp,
+      \ DerivePointerAlignment: false, PointerAlignment: Left}'
+let g:ale_cpp_clangtidy_extra_options= '--format-style={BasedOnStyle: Google, ColumnLimit: 80, Language: Cpp,
+      \ DerivePointerAlignment: false, PointerAlignment: Left}'
 
 set number
 set exrc
