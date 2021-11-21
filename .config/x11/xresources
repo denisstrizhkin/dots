@@ -1,5 +1,7 @@
 Xcursor.size: 32
 
+*.alpha: 1.0
+
 Xft.autohint: 0
 Xft.antialias: 1
 Xft.hinting: true
