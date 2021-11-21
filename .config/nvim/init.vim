@@ -12,6 +12,8 @@ call plug#end()
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 autocmd vimenter * ++nested colorscheme gruvbox
+set background=dark
+let g:gruvbox_contrast_dark='soft'
 
 "coc-config
 
