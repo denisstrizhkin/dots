@@ -1,8 +1,7 @@
 #!/bin/sh
 
-DIR=$(dirname $0)
 DOTS_DIR="$HOME/.config/dotfiles"
-alias g_dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias g_dot="git --git-dir=$HOME/.config/dotfiles --work-tree=$HOME"
 
 cd $HOME
 
