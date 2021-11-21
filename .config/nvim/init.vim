@@ -178,6 +178,7 @@ let g:cmake_default_config = 'build'
 nmap <leader>cg :CMakeGenerate<cr>
 nmap <leader>cb :CMakeBuild<cr>
 nmap <leader>cq :CMakeClose<cr>
+nmap <leader>cc :CMakeClean<cr>
 
 "end cmake integration
 
