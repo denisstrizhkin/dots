@@ -7,12 +7,11 @@ export XMODIFIERS=@im=fcitx
 dbus-launch --sh-syntax --exit-with-x11
 
 exec fcitx5 &
-# exec feh --bg-scale /home/denis/Pictures/bg_img.jpg &
+exec feh --bg-scale /home/denis/Pictures/bg_img.jpg &
 exec barupdate.sh &
-exec xrandr --output eDP --mode 1920x1080 --rate 60.00 --dpi 125 &
+exec xrandr --output HDMI-1 --mode 1920x1080 --rate 60.00 --dpi 125 &
 xrdb -merge "$XDG_CONFIG_HOME/x11/xresources"
 exec picom --experimental-backends &
 exec redshift &
-exec spotifyd -b pulseaudio --no-daemon &
 
 exec dwm
