@@ -8,8 +8,12 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export ZDOTDIR="$XDG_CONFIG_HOME/shell"
 
+# path
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/bin/simple-dwm-bar"
+export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.local/bin/my_scripts"
+
 export VIM_LATEX_FOLDER="$HOME/Documents/latex/vimlatex"
 export VIM_LATEX_TEMPLATE_DIR="$VIM_LATEX_FOLDER/templates"
 export VIM_LATEX_OUTPUT="/tmp"
