@@ -191,6 +191,7 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set cursorline
+set colorcolumn=80
 
 packloadall
 silent! helptags ALL
