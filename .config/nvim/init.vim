@@ -14,6 +14,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 autocmd vimenter * ++nested colorscheme gruvbox
 set background=dark
 let g:gruvbox_contrast_dark='soft'
+let g:python3_host_prog = '/bin/python3'
 
 "coc-config
 

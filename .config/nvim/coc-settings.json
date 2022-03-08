@@ -1,1 +1,5 @@
-
+{
+  "python.linting.pycodestyleEnabled": true,
+  "python.formatting.autopep8Args": ["--aggressive", "--aggressive"],
+  "coc.preferences.formatOnSaveFiletypes": ["python"]
+}
