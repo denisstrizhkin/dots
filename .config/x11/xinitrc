@@ -1,11 +1,19 @@
 #!/bin/sh
+if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+       eval `dbus-launch --sh-syntax --exit-with-session`
+fi
+
+unset XDG_RUNTIME_DIR
+export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
 
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
-dbus-launch --sh-syntax --exit-with-x11
+#dbus-launch --sh-syntax --exit-with-x11
 
+exec pipewire &
+exec pipewire-pulse &
 exec fcitx5 &
 exec feh --bg-scale /home/denis/Pictures/bg_img.jpg &
 exec barupdate.sh &
