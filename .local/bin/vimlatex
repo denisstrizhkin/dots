@@ -25,7 +25,7 @@ openGui() {\
 
 	# Create a new output.pdf and open it with zathura.
 	cd "$VIM_LATEX_FOLDER"
-	pdflatex -jobname="${name_date:-$doc}" -output-directory="$VIM_LATEX_OUTPUT" "$doc.tex"
+	xelatex -jobname="${name_date:-$doc}" -output-directory="$VIM_LATEX_OUTPUT" "$doc.tex"
 	zathura "$VIM_LATEX_OUTPUT/${name_date:-$doc}.pdf" -e "$xid" 2>/dev/null &
 
 	# Open vim.
