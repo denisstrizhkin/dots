@@ -1,20 +1,23 @@
 #!/bin/sh
+
+# dbus session
 if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
        eval `dbus-launch --sh-syntax --exit-with-session`
 fi
 
+# set runtime dir
 unset XDG_RUNTIME_DIR
 export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
 
+# set im method
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
-#dbus-launch --sh-syntax --exit-with-x11
-
 exec pipewire &
 exec pipewire-pulse &
 exec fcitx5 &
+exec emacs --daemon &
 exec feh --bg-scale /home/denis/Pictures/bg_img.jpg &
 exec barupdate.sh &
 exec xrandr --output HDMI-1 --mode 1920x1080 --rate 60.00 --dpi 120 &

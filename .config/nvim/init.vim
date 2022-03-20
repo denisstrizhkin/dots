@@ -4,17 +4,27 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'cdelledonne/vim-cmake'
 Plug 'antoinemadec/FixCursorHold.nvim'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'vim-airline/vim-airline'
 
 call plug#end()
 "end vim-plug
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-autocmd vimenter * ++nested colorscheme gruvbox
-set background=dark
-let g:gruvbox_contrast_dark='soft'
-let g:python3_host_prog = '/bin/python3'
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+colorscheme onehalflight
+let g:airline_theme='onehalfdark'
+
+"set termguicolors
+"autocmd vimenter * ++nested colorscheme gruvbox
+"set background=light
+"let g:gruvbox_contrast_light='soft'
+"let g:python3_host_prog = '/bin/python3'
 
 "coc-config
 

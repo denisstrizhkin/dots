@@ -5,6 +5,8 @@ alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -iv"
 
+
+alias ec="emacsclient"
 alias ytfzf="ytfzf -fD"
 
 alias s_xi="doas xbps-install"
