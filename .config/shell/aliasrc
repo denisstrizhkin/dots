@@ -7,7 +7,7 @@ alias rm="rm -iv"
 
 
 alias ec="emacsclient"
-alias ytfzf="ytfzf -fD"
+alias ytfzf="ytfzf -D"
 
 alias s_xi="doas xbps-install"
 alias s_xr="doas xbps-remove"
