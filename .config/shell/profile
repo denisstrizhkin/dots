@@ -1,4 +1,5 @@
-export EDITOR="nvim"
+export VISUAL="vi"
+export EDITOR="vis"
 export TERMINAL="st"
 export BROWSER="firefox"
 
@@ -6,7 +7,7 @@ export BROWSER="firefox"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
-export ZDOTDIR="$XDG_CONFIG_HOME/shell"
+export ENV=$HOME/.config/shell/kshrc
 
 # path
 export PATH="$PATH:$HOME/.local/bin"
@@ -17,5 +18,4 @@ export PATH="$PATH:$HOME/.local/bin/my_scripts"
 export VIM_LATEX_FOLDER="$HOME/Documents/latex/vimlatex"
 export VIM_LATEX_TEMPLATE_DIR="$VIM_LATEX_FOLDER/templates"
 export VIM_LATEX_OUTPUT="/tmp"
-export _JAVA_AWT_WM_NONREPARENTING=1
 export MOZ_USE_XINPUT2="1"
