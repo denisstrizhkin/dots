@@ -14,11 +14,16 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
-exec pipewire &
-exec pipewire-pulse &
-exec fcitx5 &
-exec barupdate.sh &
-exec xrandr --output HDMI-1 --mode 1920x1080 --rate 60.00 --dpi 120 &
+pipewire &
+pipewire-pulse &
+
+cmus --listen $XDG_RUNTIME_DIR/cmus-socket &
+
+fcitx5 &
+
+barupdate.sh &
+
+xrandr --output HDMI-1 --mode 1920x1080 --rate 60.00 --dpi 120 &
 xrdb -merge "$XDG_CONFIG_HOME/x11/xresources"
 
 exec dwm
