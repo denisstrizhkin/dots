@@ -7,13 +7,6 @@ alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -iv"
 
-alias cm_stat="cmus-remote -C status"
-alias cm_start="cmus-remote -C player-play"
-alias cm_play="cmus-remote -p"
-alias cm_pause="cmus-remote -u"
-alias cm_prev="cmus-remote -r"
-alias cm_next="cmus-remote -n"
-
 alias ytfzf="ytfzf -D"
 
 alias s_xi="doas xbps-install"

@@ -17,8 +17,6 @@ export XMODIFIERS=@im=fcitx
 pipewire &
 pipewire-pulse &
 
-cmus --listen $XDG_RUNTIME_DIR/cmus-socket &
-
 fcitx5 &
 
 barupdate.sh &
