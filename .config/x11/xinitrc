@@ -17,6 +17,8 @@ export XMODIFIERS=@im=fcitx
 pipewire &
 pipewire-pulse &
 
+emacs --daemon &
+
 fcitx5 &
 
 barupdate.sh &
