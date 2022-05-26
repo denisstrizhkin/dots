@@ -15,6 +15,33 @@
 
 (defun true-color-p () 1)
 
+(use-package openwith
+  :ensure t
+  :init
+  (setq openwith-associations (list
+			       (list (openwith-make-extension-regexp
+				 '("m4v" "mp4" "MP4" "MTS" "mpg" "mov" "avi" "AVI" "flv"))
+				"mpv"
+				'(file))
+			       (list (openwith-make-extension-regexp
+				 '("mp3" "ogg"))
+				"mpv"
+				'(file))
+			       (list (openwith-make-extension-regexp
+				 '("pdf"))
+				"zathura"
+				'(file))
+			       (list (openwith-make-extension-regexp
+				 '("xls" "xlsx"))
+				"libreoffice --calc"
+				'(file))
+			       (list (openwith-make-extension-regexp
+				 '("doc" "docx" "odt"))
+				"libreoffice --writer"
+				'(file))))
+  (openwith-mode 1)
+)
+
 (use-package magit
   :ensure t)
 
@@ -54,6 +81,7 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+(setq doc-view-continuous 1)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -61,7 +89,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(company magit vterm spacemacs-theme lsp-mode lsp-modea go-mode which-key use-package)))
+   '(openwith dired-x company magit vterm spacemacs-theme lsp-mode lsp-modea go-mode which-key use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
