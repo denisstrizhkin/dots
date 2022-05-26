@@ -15,6 +15,9 @@
 
 (defun true-color-p () 1)
 
+(use-package magit
+  :ensure t)
+
 (use-package vterm
   :ensure t)
 
@@ -28,6 +31,12 @@
     (load-theme 'spacemacs-light t))
 )
 
+(use-package company
+  :ensure t
+  :config
+  (global-company-mode t)
+)
+
 (use-package lsp-mode
   :ensure t
   :init
@@ -35,8 +44,11 @@
   (setq lsp-keymap-prefix "C-c l")
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          (go-mode . lsp)
+	 (html-mode . lsp)
+	 (css-mode . lsp)
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration))
+	 
   :commands lsp)
 
 (tool-bar-mode -1)
@@ -49,7 +61,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(vterm spacemacs-theme lsp-mode lsp-modea go-mode which-key use-package)))
+   '(company magit vterm spacemacs-theme lsp-mode lsp-modea go-mode which-key use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
