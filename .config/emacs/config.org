@@ -1,0 +1,167 @@
+
+* EMACS config.org
+** USEPACKAGE setup
+#+BEGIN_SRC emacs-lisp
+  (require 'package)
+  (setq package-enable-at-startup nil)
+  (add-to-list 'package-archives
+	 '("melpa" . "https://melpa.org/packages/"))
+  (package-initialize)
+
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+#+END_SRC
+
+** WHICH-KEY
+#+BEGIN_SRC emacs-lisp
+  (use-package which-key
+    :ensure t
+    :config
+    (which-key-mode)
+  )
+#+END_SRC
+
+** LAMMPS-MODE
+#+BEGIN_SRC emacs-lisp
+  (use-package lammps-mode
+    :ensure t
+    :mode (
+      ("\\.in\\'" . lammps-mode)
+      ("\\.lmp\\'" . lammps-mode)
+    )
+  )
+
+#+END_SRC
+
+** OPENWITH
+#+BEGIN_SRC emacs-lisp
+  (use-package openwith
+    :ensure t
+    :config
+    (setq openwith-associations (list
+				 (list (openwith-make-extension-regexp
+				   '("m4v" "mp4" "MP4" "MTS" "mpg" "mov" "avi" "AVI" "flv"))
+				  "mpv"
+				  '(file))
+				 (list (openwith-make-extension-regexp
+				   '("mp3" "ogg"))
+				  "mpv"
+				  '(file))
+				 (list (openwith-make-extension-regexp
+				   '("pdf"))
+				  "zathura"
+				  '(file))
+				 (list (openwith-make-extension-regexp
+				   '("xls" "xlsx"))
+				  "libreoffice --calc"
+				  '(file))
+				 (list (openwith-make-extension-regexp
+				   '("doc" "docx" "odt"))
+				  "libreoffice --writer"
+				  '(file))))
+    (openwith-mode 1)
+  )
+#+END_SRC
+
+** MAGIT
+#+BEGIN_SRC emacs-lisp
+    (use-package magit
+      :ensure t)
+#+END_SRC
+
+** VTERM
+#+BEGIN_SRC emacs-lisp
+    (use-package vterm
+      :ensure t)
+#+END_SRC
+
+** THEME
+#+BEGIN_SRC emacs-lisp
+     (defun true-color-p () 1)
+     (defun my/load-theme (frame)
+	 (select-frame frame)
+	 (load-theme 'spacemacs-dark t))
+
+     (use-package spacemacs-theme
+       :defer t
+       :init (if (daemonp)
+		 (add-hook 'after-make-frame-functions #'my/load-theme)
+	       (load-theme 'spacemacs-dark t))
+     )
+#+END_SRC
+
+** CODE HIGHTLIGHTING
+#+BEGIN_SRC emacs-lisp
+    (use-package company
+      :ensure t
+      :config
+      (global-company-mode t)
+    )
+
+    (use-package lsp-mode
+      :ensure t
+      :init
+      ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+      (setq lsp-keymap-prefix "C-c l")
+      :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+	     (go-mode . lsp)
+	     (html-mode . lsp)
+	     (css-mode . lsp)
+	     ;; if you want which-key integration
+	     (lsp-mode . lsp-enable-which-key-integration))
+
+      :commands lsp)
+#+END_SRC
+
+** FILES BACKUPS
+#+BEGIN_SRC emacs-lisp
+  (setq backup-directory-alist
+	`((".*" . ,temporary-file-directory)))
+  (setq auto-save-file-name-transforms
+	`((".*" ,temporary-file-directory t)))
+#+END_SRC
+
+** DIRED DIR SIZE
+#+BEGIN_SRC emacs-lisp
+  (defun dired-get-size ()
+   (interactive)
+   (let ((files (dired-get-marked-files)))
+     (with-temp-buffer
+       (apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
+       (message "Size of all marked files: %s"
+		(progn 
+		  (re-search-backward "\\(^[0-9.,]+[A-Za-z]+\\).*total$")
+		   (match-string 1))))))
+
+  (define-key dired-mode-map (kbd "?") 'dired-get-size)
+#+END_SRC
+
+** GLOBAL SETTINGS
+#+BEGIN_SRC emacs-lisp
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+  (global-display-line-numbers-mode 1)
+
+  (defalias 'yes-or-no-p 'y-or-n-p) ; y or n is enough
+  (defalias 'list-buffers 'ibuffer) ; always use ibuffer
+#+END_SRC
+
+** OTHER OPTIONS
+#+BEGIN_SRC emacs-lisp
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(package-selected-packages
+     '(lammps-mode openwith dired-x company magit vterm spacemacs-theme lsp-mode lsp-modea go-mode which-key use-package)))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   )
+
+#+END_SRC
