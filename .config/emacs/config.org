@@ -148,6 +148,43 @@
   (defalias 'list-buffers 'ibuffer) ; always use ibuffer
 #+END_SRC
 
+** MUSIC
+#+BEGIN_SRC emacs-lisp :results none
+  (use-package emms
+	    :ensure t
+	    :config
+	    (require 'emms-setup)
+	    (require 'emms-player-mpd)
+	    (emms-all)
+
+	    (setq emms-seek-seconds 5)
+	    (setq emms-player-list '(emms-player-mpd))
+	    (setq emms-info-functions '(emms-info-mpd))
+	    (setq emms-player-mpd-server-name "localhost")
+	    (setq emms-player-mpd-server-port "6601")
+
+	    (emms-player-mpd-connect)
+	    (emms-cache-set-from-mpd-all)
+
+	    (add-hook 'emms-playlist-cleared-hook 'emms-player-mpd-clear)
+  )
+
+  (setq mpc-host "localhost:6601")
+  (defun mpd/update-database()
+    (interactive)
+    (call-process "mpc" nil nil nil "update")
+    (message "MPD database updated!")
+  )
+  (defun mpd/vol-raise()
+    (interactive)
+    (emms-volume-mpd-change +10)
+  )
+  (defun mpd/vol-lower()
+    (interactive)
+    (emms-volume-mpd-change -10)
+  )
+#+END_SRC
+
 ** OTHER OPTIONS
 #+BEGIN_SRC emacs-lisp
   (custom-set-variables

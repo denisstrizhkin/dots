@@ -1,7 +1,13 @@
-export VISUAL="vi"
-export EDITOR="vis"
+#!/bin/ksh
+
+export VISUAL="emacs"
+export EDITOR="emacs"
 export TERMINAL="st"
 export BROWSER="firefox"
+
+# mpd
+export MPD_HOST="localhost"
+export MPD_PORT="6601"
 
 # home dir clean up
 export XDG_CONFIG_HOME="$HOME/.config"

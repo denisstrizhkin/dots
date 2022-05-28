@@ -18,6 +18,7 @@ pipewire &
 pipewire-pulse &
 
 emacs --daemon &
+mpd &
 
 fcitx5 &
 

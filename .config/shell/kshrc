@@ -13,8 +13,6 @@ KMAG="${P}1;35m"
 KCYN="${P}1;36m"
 KWHT="${P}1;37m"
 
-export VISUAL="vi"
-
 PS1="$(printf "╦═ %b${USER}%b@%b$(hostname) \
 %b\${PWD}%b\n╚═══> " "${KMAG}" "${KNRM}" "${KGRN}" "${KMAG}" "${KNRM}")"
 
