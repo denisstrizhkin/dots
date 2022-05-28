@@ -92,26 +92,28 @@
 #+END_SRC
 
 ** CODE HIGHTLIGHTING
-#+BEGIN_SRC emacs-lisp
-    (use-package company
-      :ensure t
-      :config
-      (global-company-mode t)
-    )
+#+BEGIN_SRC emacs-lisp :results none
+  (use-package company
+    :ensure t
+    :config
+    (global-company-mode t)
+  )
 
-    (use-package lsp-mode
-      :ensure t
-      :init
-      ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-      (setq lsp-keymap-prefix "C-c l")
-      :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-	     (go-mode . lsp)
-	     (html-mode . lsp)
-	     (css-mode . lsp)
-	     ;; if you want which-key integration
-	     (lsp-mode . lsp-enable-which-key-integration))
+  (setq-default css-indent-offset 2)
 
-      :commands lsp)
+  (use-package lsp-mode
+    :ensure t
+    :init
+    ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+    (setq lsp-keymap-prefix "C-c l")
+    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+	   (go-mode . lsp)
+	   (mhtml-mode . lsp)
+	   (css-mode . lsp)
+	   ;; if you want which-key integration
+	   (lsp-mode . lsp-enable-which-key-integration))
+
+    :commands lsp)
 #+END_SRC
 
 ** FILES BACKUPS
@@ -150,55 +152,8 @@
 
 ** MUSIC
 #+BEGIN_SRC emacs-lisp :results none
-  (use-package emms
-	    :ensure t
-	    :config
-	    (require 'emms-setup)
-	    (require 'emms-player-mpd)
-	    (emms-all)
-
-	    (setq emms-seek-seconds 5)
-	    (setq emms-player-list '(emms-player-mpd))
-	    (setq emms-info-functions '(emms-info-mpd))
-	    (setq emms-player-mpd-server-name "localhost")
-	    (setq emms-player-mpd-server-port "6601")
-
-	    (emms-player-mpd-connect)
-	    (emms-cache-set-from-mpd-all)
-
-	    (add-hook 'emms-playlist-cleared-hook 'emms-player-mpd-clear)
-  )
-
-  (setq mpc-host "localhost:6601")
-  (defun mpd/update-database()
-    (interactive)
-    (call-process "mpc" nil nil nil "update")
-    (message "MPD database updated!")
-  )
-  (defun mpd/vol-raise()
-    (interactive)
-    (emms-volume-mpd-change +10)
-  )
-  (defun mpd/vol-lower()
-    (interactive)
-    (emms-volume-mpd-change -10)
-  )
+  (use-package mingus
+      :ensure t
+      )
 #+END_SRC
 
-** OTHER OPTIONS
-#+BEGIN_SRC emacs-lisp
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(package-selected-packages
-     '(lammps-mode openwith dired-x company magit vterm spacemacs-theme lsp-mode lsp-modea go-mode which-key use-package)))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   )
-
-#+END_SRC
