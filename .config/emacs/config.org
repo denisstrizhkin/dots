@@ -1,16 +1,26 @@
 
 * EMACS config.org
 ** USEPACKAGE setup
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
   (require 'package)
   (setq package-enable-at-startup nil)
   (add-to-list 'package-archives
-	 '("melpa" . "https://melpa.org/packages/"))
+	       '("melpa" . "~/Desktop/data/melpa/")) ; "https://melpa.org/packages/"
   (package-initialize)
 
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
     (package-install 'use-package))
+  (unless (package-installed-p 'quelpa)
+    (with-temp-buffer
+      (url-insert-file-contents "https://raw.githubusercontent.com/quelpa/quelpa/master/quelpa.el")
+      (eval-buffer)
+      (quelpa-self-upgrade)))
+  (quelpa
+   '(quelpa-use-package
+     :fetcher git
+     :url "https://github.com/quelpa/quelpa-use-package.git"))
+  (require 'quelpa-use-package)
 #+END_SRC
 
 ** WHICH-KEY
@@ -27,10 +37,10 @@
   (use-package lammps-mode
     :ensure t
     :mode (
-      ("\\.in\\'" . lammps-mode)
-      ("\\.lmp\\'" . lammps-mode)
+	   ("\\.in\\'" . lammps-mode)
+	   ("\\.lmp\\'" . lammps-mode)
+	   )
     )
-  )
 
 #+END_SRC
 
@@ -41,27 +51,27 @@
     :config
     (setq openwith-associations (list
 				 (list (openwith-make-extension-regexp
-				   '("m4v" "mp4" "MP4" "MTS" "mpg" "mov" "avi" "AVI" "flv"))
-				  "mpv"
-				  '(file))
+					'("m4v" "mp4" "MP4" "MTS" "mpg" "mov" "avi" "AVI" "flv"))
+				       "mpv"
+				       '(file))
 				 (list (openwith-make-extension-regexp
-				   '("mp3" "ogg"))
-				  "mpv"
-				  '(file))
+					'("mp3" "ogg"))
+				       "mpv"
+				       '(file))
 				 (list (openwith-make-extension-regexp
-				   '("pdf"))
-				  "zathura"
-				  '(file))
+					'("pdf"))
+				       "zathura"
+				       '(file))
 				 (list (openwith-make-extension-regexp
-				   '("xls" "xlsx"))
-				  "libreoffice --calc"
-				  '(file))
+					'("xls" "xlsx"))
+				       "libreoffice --calc"
+				       '(file))
 				 (list (openwith-make-extension-regexp
-				   '("doc" "docx" "odt"))
-				  "libreoffice --writer"
-				  '(file))))
+					'("doc" "docx" "odt"))
+				       "libreoffice --writer"
+				       '(file))))
     (openwith-mode 1)
-  )
+    )
 #+END_SRC
 
 ** MAGIT
@@ -78,17 +88,17 @@
 
 ** THEME
 #+BEGIN_SRC emacs-lisp
-     (defun true-color-p () 1)
-     (defun my/load-theme (frame)
-	 (select-frame frame)
-	 (load-theme 'spacemacs-dark t))
+  (defun true-color-p () 1)
+  (defun my/load-theme (frame)
+    (select-frame frame)
+    (load-theme 'spacemacs-dark t))
 
-     (use-package spacemacs-theme
-       :defer t
-       :init (if (daemonp)
-		 (add-hook 'after-make-frame-functions #'my/load-theme)
-	       (load-theme 'spacemacs-dark t))
-     )
+  (use-package spacemacs-theme
+    :defer t
+    :init (if (daemonp)
+	      (add-hook 'after-make-frame-functions #'my/load-theme)
+	    (load-theme 'spacemacs-dark t))
+    )
 #+END_SRC
 
 ** CODE HIGHTLIGHTING
@@ -127,20 +137,32 @@
 ** DIRED DIR SIZE
 #+BEGIN_SRC emacs-lisp
   (defun dired-get-size ()
-   (interactive)
-   (let ((files (dired-get-marked-files)))
-     (with-temp-buffer
-       (apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
-       (message "Size of all marked files: %s"
-		(progn 
-		  (re-search-backward "\\(^[0-9.,]+[A-Za-z]+\\).*total$")
+    (interactive)
+    (let ((files (dired-get-marked-files)))
+      (with-temp-buffer
+	(apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
+	(message "Size of all marked files: %s"
+		 (progn 
+		   (re-search-backward "\\(^[0-9.,]+[A-Za-z]+\\).*total$")
 		   (match-string 1))))))
 
   (define-key dired-mode-map (kbd "?") 'dired-get-size)
 #+END_SRC
 
 ** GLOBAL SETTINGS
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
+  (setq locale-coding-system 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  (set-selection-coding-system 'utf-8)
+  (prefer-coding-system 'utf-8)
+
+  (substitute-key-definition 'kill-buffer 'kill-buffer-and-window global-map)
+
+(setq default-input-method "russian-computer")
+  
+  (setq-default fill-column 80)
+
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (scroll-bar-mode -1)
@@ -152,8 +174,63 @@
 
 ** MUSIC
 #+BEGIN_SRC emacs-lisp :results none
-  (use-package mingus
+    (use-package simple-mpc
+      :quelpa (simple-mpc :fetcher github :repo "jorenvo/simple-mpc")
       :ensure t
-      )
+      :config
+      (setq simple-mpc-playlist-format "%album% : %title% - %artist%")
+    )
+  (defun mpd/update-database()
+    (interactive)
+    (call-process "mpc" nil nil nil "update")
+    (message "MPD database updated!")
+  )
 #+END_SRC
 
+** FONTS
+#+BEGIN_SRC emacs-lisp :results none
+					  ; font size
+  (set-face-attribute 'default nil :height 110)
+
+  (defun styling/set-fonts()
+					  ; main font
+    (when (member "Iosevka" (font-family-list))
+      (set-frame-font "Iosevka" t t))
+
+					  ; emoji font
+    (when (member "Noto Color Emoji" (font-family-list))
+      (set-fontset-font t 'emoji "Noto Color Emoji"))
+
+					  ; symbols font
+    (when (member "Iosevka" (font-family-list))
+      (set-fontset-font t 'symbol "Iosevka"))
+
+					  ; japanese font
+    (when (member "IPAGothic" (font-family-list))
+      (set-fontset-font t 'kana "IPAGothic"))
+
+					  ; cyrillic font
+    (when (member "Iosevka" (font-family-list))
+      (set-fontset-font t 'cyrillic "Iosevka"))
+
+    (add-hook 'after-init-hook 'styling/set-fonts)
+    (add-hook 'server-after-make-frame-hook 'styling/set-fonts)
+#+END_SRC
+
+** LANGTOOL
+#+BEGIN_SRC emacs-lisp :results none
+  (use-package ispell
+  :ensure t
+  :config
+    (setq ispell-program-name "hunspell")
+      (ispell-set-spellchecker-params) ;; ispell initialization, a mandatory call
+      (ispell-hunspell-add-multi-dic "en_US,ru_RU")
+      (ispell-change-dictionary "en_US,ru_RU" t)
+     )
+
+	(use-package flyspell
+	  :ensure t
+	  :config
+	  (add-hook 'latex-mode-hook
+		    (lambda () (flyspell-mode 1))))
+#+END_SRC
