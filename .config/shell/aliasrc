@@ -16,9 +16,9 @@ alias s_xi_snf="s_xi --repository hostdir/binpkgs/nonfree"
 alias s_xi_s="s_xi --repository hostdir/binpkgs"
 
 alias s_v="doas vis"
-alias vim="vim-x11"
+alias vim=vim-x11
 
 alias s_r="doas reboot"
 alias s_p="doas poweroff"
 
-alias g_dot="git --git-dir=$XDG_CONFIG_HOME/dotfiles/ --work-tree=$HOME"
+alias g_dot="git --git-dir=\"$XDG_CONFIG_HOME\"/dotfiles/ --work-tree=\"$HOME\""

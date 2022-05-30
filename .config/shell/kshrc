@@ -14,11 +14,11 @@ KCYN="${P}1;36m"
 KWHT="${P}1;37m"
 
 PS1="$(printf "╦═ %b${USER}%b@%b$(hostname) \
-%b\${PWD}%b\n╚═══> " "${KMAG}" "${KNRM}" "${KGRN}" "${KMAG}" "${KNRM}")"
+%b\${PWD}%b\n╚═══> " "$KMAG" "$KNRM" "$KGRN" "$KMAG" "$KNRM")"
 
 . "$HOME"/.config/shell/profile
 . "$HOME"/.config/shell/aliasrc
 
-if [ -z "${DISPLAY}" ] && [ "$(tty)" = "/dev/tty1" ]; then
-	exec startx "$HOME/.config/x11/xinitrc"
+if [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; then
+	exec startx "$XDG_CONFIG_HOME"/x11/xinitrc
 fi
