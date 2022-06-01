@@ -24,7 +24,8 @@ fcitx5 &
 
 barupdate.sh &
 
-xrandr --output HDMI-1 --mode 1920x1080 --rate 60.00 --dpi 120 &
+xrandr --output HDMI-1 --mode 1920x1080 --rate 60.00 --dpi 120 \
+       --brightness 1.0 --gamma 0.76:0.75:0.68 &
 xrdb -merge "$XDG_CONFIG_HOME/x11/xresources"
 
 exec dwm
