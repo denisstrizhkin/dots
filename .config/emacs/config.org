@@ -35,11 +35,11 @@
 
 (setq display-time-default-load-average nil)
 (display-time-mode t)
+(display-battery-mode t)
 
 (server-start)
 
 (use-package exwm
-  :ensure t
   :config
   (require 'exwm-config)
   
@@ -111,19 +111,14 @@
   (exwm-xim-enable)
   (push ?\C-\\ exwm-input-prefix-keys))
 #+END_SRC
-*** System monitor - symon
+** System monitor - symon
 #+BEGIN_SRC emacs-lisp :results none
-(use-package symon
-  :quelpa (symon :fetcher github :repo "ieure/symon")
-  :ensure t
-  :config
-  (symon-mode 1))
+; does not work
 #+END_SRC
 
 ** WHICH-KEY
 #+BEGIN_SRC emacs-lisp
   (use-package which-key
-    :ensure t
     :config
     (which-key-mode)
   )
@@ -132,7 +127,6 @@
 ** LAMMPS-MODE
 #+BEGIN_SRC emacs-lisp
 (use-package lammps-mode
-  :ensure t
   :mode (
 	 ("\\.in\\'" . lammps-mode)
 	 ("\\.lmp\\'" . lammps-mode)))
@@ -141,7 +135,6 @@
 ** OPENWITH
 #+BEGIN_SRC emacs-lisp
 (use-package openwith
-  :ensure t
   :config
   (setq openwith-associations (list
 			       (list (openwith-make-extension-regexp
@@ -169,14 +162,12 @@
 
 ** MAGIT
 #+BEGIN_SRC emacs-lisp
-(use-package magit
-  :ensure t)
+(use-package magit)
 #+END_SRC
 
 ** VTERM
 #+BEGIN_SRC emacs-lisp
-(use-package vterm
-  :ensure t)
+(use-package vterm)
 #+END_SRC
 
 ** THEME
@@ -191,7 +182,6 @@
     (modus-themes-load-vivendi))
   
   (use-package modus-themes
-    :ensure
     :init
     ;; Add all your customizations prior to loading the themes
     (setq modus-themes-italic-constructs t
@@ -211,14 +201,12 @@
 ** CODE HIGHTLIGHTING
 #+BEGIN_SRC emacs-lisp :results none
 (use-package company
-  :ensure t
   :config
   (global-company-mode t))
 
 (setq-default css-indent-offset 2)
 
 (use-package lsp-mode
-  :ensure t
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
@@ -277,11 +265,6 @@
 ;; Set default wrap column.
 (setq-default fill-column 80)
 
-;; Disable excess ui.
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-
 ;; Enable global line numbering.
 (global-display-line-numbers-mode 1)
 
@@ -293,7 +276,6 @@
 ** MUSIC
 #+BEGIN_SRC emacs-lisp :results none
 (use-package simple-mpc
-  :ensure t
   :config
   (setq simple-mpc-playlist-format "%album% : %title% - %artist%"))
 
@@ -337,7 +319,6 @@
 ** LANGTOOL
 #+BEGIN_SRC emacs-lisp :results none
 (use-package ispell
-  :ensure t
   :config
   (setq ispell-program-name "hunspell")
   (ispell-set-spellchecker-params) ;; ispell initialization, a mandatory call
@@ -345,7 +326,6 @@
   (ispell-change-dictionary "en_US,ru_RU" t))
 
 (use-package flyspell
-  :ensure t
   :config
   (add-hook 'latex-mode-hook
 	    (lambda () (flyspell-mode 1))))
@@ -353,10 +333,7 @@
 
 ** AGGRESSIVE INDENT
 #+BEGIN_SRC emacs-lisp :results none
-(aggressive-indent-mode 1)
-
 (use-package aggressive-indent
-  :ensure t
   :config
   (global-aggressive-indent-mode 1))
 #+END_SRC
