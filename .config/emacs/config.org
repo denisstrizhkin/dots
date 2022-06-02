@@ -5,7 +5,7 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
-	     '("melpa" . "~/Desktop/data/melpa/")) ; "https://melpa.org/packages/"
+	     '("melpa" . "https://melpa.org/packages/")) ; "https://melpa.org/packages/"
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -36,6 +36,7 @@
 
 (setq display-time-default-load-average nil)
 (display-time-mode t)
+(display-battery-mode t)
 
 (server-start)
 
@@ -112,13 +113,9 @@
   (exwm-xim-enable)
   (push ?\C-\\ exwm-input-prefix-keys))
 #+END_SRC
-*** System monitor - symon
+** System monitor - symon
 #+BEGIN_SRC emacs-lisp :results none
-(use-package symon
-  :quelpa (symon :fetcher github :repo "ieure/symon")
-  :ensure t
-  :config
-  (symon-mode 1))
+; does not work
 #+END_SRC
 
 ** WHICH-KEY
@@ -278,11 +275,6 @@
 ;; Set default wrap column.
 (setq-default fill-column 80)
 
-;; Disable excess ui.
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-
 ;; Enable global line numbering.
 (global-display-line-numbers-mode 1)
 
@@ -354,8 +346,6 @@
 
 ** AGGRESSIVE INDENT
 #+BEGIN_SRC emacs-lisp :results none
-(aggressive-indent-mode 1)
-
 (use-package aggressive-indent
   :ensure t
   :config
