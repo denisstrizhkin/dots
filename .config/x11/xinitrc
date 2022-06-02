@@ -10,22 +10,28 @@ unset XDG_RUNTIME_DIR
 export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
 
 # set im method
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
+#export GTK_IM_MODULE=fcitx
+#export QT_IM_MODULE=fcitx
+#export XMODIFIERS=@im=fcitx
+export XMODIFIERS=@im=exwm-xim
+export GTK_IM_MODULE=xim
+export CLUTTER_IM_MODULE=xim
+export QT_IM_MODULE=xim
 
 pipewire &
 pipewire-pulse &
 
-emacs --daemon &
+#emacs --daemon &
 mpd &
 
-fcitx5 &
+#fcitx5 &
 
-barupdate.sh &
+#barupdate.sh &
 
 xrandr --output HDMI-1 --mode 1920x1080 --rate 60.00 --dpi 120 \
        --brightness 1.0 --gamma 0.76:0.75:0.68 &
 xrdb -merge "$XDG_CONFIG_HOME/x11/xresources"
 
-exec dwm
+#exec dwm
+
+exec emacs
