@@ -59,7 +59,7 @@
 			(lambda ()
                           (interactive)
                           (exwm-workspace-switch-create ,i))))
-                    (number-sequence 0 9))
+                    (number-sequence 1 5))
           ;; Bind "s-&" to launch applications ('M-&' also works if the output
           ;; buffer does not bother you).
           ([?\s-&] . (lambda (command)
