@@ -20,5 +20,13 @@ PS1="$(printf "╦═ %b${USER}%b@%b$(hostname) \
 . "$HOME"/.config/shell/aliasrc
 
 if [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; then
-	exec startx "$XDG_CONFIG_HOME"/x11/xinitrc
+    exec startx "$XDG_CONFIG_HOME"/x11/xinitrc
 fi
+
+#if [ -z "$(tmux list-sessions | grep "$(whoami)")" ]; then
+#    tmux new-session -s "$(whoami)" -d
+#fi
+#
+#if [ "$TERM" != screen ]; then
+#    exec tmux attach-session -t "$(whoami)"
+#fi

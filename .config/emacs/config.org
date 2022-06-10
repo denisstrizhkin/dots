@@ -26,90 +26,104 @@
 
 ** EXWM
 #+BEGIN_SRC emacs-lisp :results none
-;; Disable menu-bar, tool-bar and scroll-bar to increase the usable space.
+;;; Disable menu-bar, tool-bar and scroll-bar to increase the usable space.
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-;; Also shrink fringes to 1 pixel.
-(fringe-mode 1)
-
-(setq display-time-default-load-average nil)
-(display-time-mode t)
-(display-battery-mode t)
-
-(server-start)
-
-(use-package exwm
-  :config
-  (require 'exwm-config)
-  
-  (setq exwm-workspace-number 1)
-
-  ;; Global keybindings can be defined with `exwm-input-global-keys'.
-  ;; Here are a few examples:
-  (setq exwm-input-global-keys
-	`(
-          ;; Bind "s-r" to exit char-mode and fullscreen mode.
-          ([?\s-r] . exwm-reset)
-          ;; Bind "s-w" to switch workspace interactively.
-          ([?\s-w] . exwm-workspace-switch)
-          ;; Bind "s-0" to "s-9" to switch to a workspace by its index.
-          ,@(mapcar (lambda (i)
-                      `(,(kbd (format "s-%d" i)) .
-			(lambda ()
-                          (interactive)
-                          (exwm-workspace-switch-create ,i))))
-                    (number-sequence 1 5))
-          ;; Bind "s-&" to launch applications ('M-&' also works if the output
-          ;; buffer does not bother you).
-          ([?\s-&] . (lambda (command)
-		       (interactive (list (read-shell-command "$ ")))
-		       (start-process-shell-command command nil command)))
-          ;; Bind "s-<f2>" to "slock", a simple X display locker.
-          ([s-f2] . (lambda ()
-		      (interactive)
-		      (start-process "" nil "/usr/bin/slock")))))
-
-  ;; To add a key binding only available in line-mode, simply define it in
-  ;; `exwm-mode-map'.  The following example shortens 'C-c q' to 'C-q'.
-  (define-key exwm-mode-map [?\C-q] #'exwm-input-send-next-key)
-
-  ;; The following example demonstrates how to use simulation keys to mimic
-  ;; the behavior of Emacs.  The value of `exwm-input-simulation-keys` is a
-  ;; list of cons cells (SRC . DEST), where SRC is the key sequence you press
-  ;; and DEST is what EXWM actually sends to application.  Note that both SRC
-  ;; and DEST should be key sequences (vector or string).
-  (setq exwm-input-simulation-keys
-	'(
-          ;; movement
-          ([?\C-b] . [left])
-          ([?\M-b] . [C-left])
-          ([?\C-f] . [right])
-          ([?\M-f] . [C-right])
-          ([?\C-p] . [up])
-          ([?\C-n] . [down])
-          ([?\C-a] . [home])
-          ([?\C-e] . [end])
-          ([?\M-v] . [prior])
-          ([?\C-v] . [next])
-          ([?\C-d] . [delete])
-          ([?\C-k] . [S-end delete])
-          ;; cut/paste.
-          ([?\C-w] . [?\C-x])
-          ([?\M-w] . [?\C-c])
-          ([?\C-y] . [?\C-v])
-          ;; search
-          ([?\C-s] . [?\C-f])))
-
-  (exwm-enable)
-
-  (require 'exwm-systemtray)
-  (exwm-systemtray-enable)
-
-  ;; Enable exwm input method. (Does not work in QT apps unfotunatelly.)
-  (require 'exwm-xim)
-  (exwm-xim-enable)
-  (push ?\C-\\ exwm-input-prefix-keys))
+;;; Also shrink fringes to 1 pixel.
+;(fringe-mode 1)
+;
+;(setq display-time-default-load-average nil)
+;(display-time-mode t)
+;(display-battery-mode t)
+;
+;(server-start)
+;
+;(use-package exwm
+;  :config
+;  (require 'exwm-config)
+;
+;  (require 'exwm-randr)
+;  (setq exwm-randr-workspace-monitor-plist '(1 "DVI-I-0" 3 "DVI-I-0"))
+;  (exwm-randr-enable)
+;
+;  (setq exwm-workspace-index-map
+;	(lambda (index) (number-to-string (1+ index))))  
+;  (setq exwm-workspace-number 5)
+;
+;  (add-hook 'exwm-update-class-hook
+;            (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
+;  (add-hook 'exwm-update-title-hook
+;            (lambda () (exwm-workspace-rename-buffer exwm-title)))
+;
+;  ;; Global keybindings can be defined with `exwm-input-global-keys'.
+;  ;; Here are a few examples:
+;  (setq exwm-input-global-keys
+;	`(
+;          ;; Bind "s-r" to exit char-mode and fullscreen mode.
+;          ([?\s-r] . exwm-reset)
+;          ;; Bind "s-w" to switch workspace interactively.
+;          ([?\s-w] . exwm-workspace-switch)
+;          ;; Bind "s-0" to "s-9" to switch to a workspace by its index.
+;          ,@(mapcar (lambda (i)
+;                      `(,(kbd (format "s-%d" i)) .
+;			(lambda ()
+;                          (interactive)
+;                          (exwm-workspace-switch , (1- i)))))
+;                    (number-sequence 1 5))
+;          ;; Bind "s-&" to launch applications ('M-&' also works if the output
+;          ;; buffer does not bother you).
+;          ([?\s-&] . (lambda (command)
+;		       (interactive (list (read-shell-command "$ ")))
+;		       (start-process-shell-command command nil command)))
+;          ;; Bind "s-<f2>" to "slock", a simple X display locker.
+;          ([s-f2] . (lambda ()
+;		      (interactive)
+;		      (start-process "" nil "/usr/bin/slock")))))
+;
+;  ;; To add a key binding only available in line-mode, simply define it in
+;  ;; `exwm-mode-map'.  The following example shortens 'C-c q' to 'C-q'.
+;  (define-key exwm-mode-map [?\C-q] #'exwm-input-send-next-key)
+;  (define-key exwm-mode-map [print] #'screenshot-selected-region)
+;
+;  ;; The following example demonstrates how to use simulation keys to mimic
+;  ;; the behavior of Emacs.  The value of `exwm-input-simulation-keys` is a
+;  ;; list of cons cells (SRC . DEST), where SRC is the key sequence you press
+;  ;; and DEST is what EXWM actually sends to application.  Note that both SRC
+;  ;; and DEST should be key sequences (vector or string).
+;  (setq exwm-input-simulation-keys
+;	'(
+;          ;; movement
+;          ([?\C-b] . [left])
+;          ([?\M-b] . [C-left])
+;          ([?\C-f] . [right])
+;          ([?\M-f] . [C-right])
+;          ([?\C-p] . [up])
+;          ([?\C-n] . [down])
+;          ([?\C-a] . [home])
+;          ([?\C-e] . [end])
+;          ([?\M-v] . [prior])
+;          ([?\C-v] . [next])
+;          ([?\C-d] . [delete])
+;          ([?\C-k] . [S-end delete])
+;          ;; cut/paste.
+;          ([?\C-w] . [?\C-x])
+;          ([?\M-w] . [?\C-c])
+;          ([?\C-y] . [?\C-v])
+;          ;; search
+;          ([?\C-s] . [?\C-f])))
+;
+;
+;
+;  (exwm-enable)
+;
+;  (require 'exwm-systemtray)
+;  (exwm-systemtray-enable)
+;
+;  ;; Enable exwm input method. (Does not work in QT apps unfotunatelly.)
+;  (require 'exwm-xim)
+;  (exwm-xim-enable)
+;  (push ?\C-\\ exwm-input-prefix-keys))
 #+END_SRC
 ** System monitor - symon
 #+BEGIN_SRC emacs-lisp :results none
@@ -252,6 +266,17 @@
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
+;; Function for making screenshots of the selected region with scrot.
+(global-set-key (kbd "<print>") 'screenshot-selected-region)
+
+(defun screenshot-selected-region ()
+		  (interactive)
+		  (message "Select a region")
+		  (let ((path (concat "~/Pictures/screenshots/"
+				      (format-time-string "%Y-%m-%d-%T-screenshot") ".png")))
+		    (shell-command (concat "scrot " path " -s -f --quality 100") nil (get-buffer "*Messages*"))
+		    (message (concat "Scrennshot saved to " path))))
+
 ;; Set default input method.
 (setq default-input-method "russian-computer")
 
@@ -271,13 +296,43 @@
 ;; Some aliases.
 (defalias 'yes-or-no-p 'y-or-n-p) ; y or n is enough
 (defalias 'list-buffers 'ibuffer) ; always use ibuffer
+
+(use-package pass)
 #+END_SRC
 
-** MUSIC
+** MU
+SIC
 #+BEGIN_SRC emacs-lisp :results none
-(use-package simple-mpc
+;(use-package simple-mpc
+;  :config
+;  (setq simple-mpc-playlist-format "%album% : %title% - %artist%"))
+
+(use-package emms
   :config
-  (setq simple-mpc-playlist-format "%album% : %title% - %artist%"))
+  (require 'emms-player-mpd)
+  (setq emms-player-mpd-server-name "localhost"
+	emms-player-mpd-server-port "6601")
+  (setq emms-info-functions '(emms-info-mpd)
+	emms-player-list '(emms-player-mpd))
+  (emms-player-mpd-connect)
+
+  (require 'emms-volume)
+  (setq emms-volume-change-function 'emms-volume-mpd-change)
+  (global-set-key (kbd "C-c =") 'emms-volume-mode-plus)
+  (global-set-key (kbd "C-c -") 'emms-volume-mode-minus)
+  (global-set-key (kbd "C-c p") 'emms-pause)
+
+  (require 'emms-cache)
+  (emms-cache 1)
+  (emms-cache-set-from-mpd-all)
+
+  (require 'emms-mode-line)
+  (emms-mode-line 1)
+
+  (require 'emms-playing-time)
+  (emms-playing-time 1)
+
+  (require 'emms-streams))
 
 (defun mpd/update-database()
   (interactive)

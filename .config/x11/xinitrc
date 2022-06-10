@@ -2,7 +2,7 @@
 
 # dbus session
 if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
-       eval `dbus-launch --sh-syntax --exit-with-session`
+    eval `dbus-launch --sh-syntax --exit-with-session`
 fi
 
 # set runtime dir
@@ -11,27 +11,30 @@ export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
 
 # set im method
 #export GTK_IM_MODULE=fcitx
-#export QT_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
 #export XMODIFIERS=@im=fcitx
 export XMODIFIERS=@im=exwm-xim
 export GTK_IM_MODULE=xim
 export CLUTTER_IM_MODULE=xim
-export QT_IM_MODULE=xim
 
 pipewire &
 pipewire-pulse &
 
-#emacs --daemon &
-mpd &
+emacs --daemon &
+mpd --kill; mpd &
 
-#fcitx5 &
+fcitx5 &
 
 #barupdate.sh &
 
-xrandr --output HDMI-1 --mode 1920x1080 --rate 60.00 --dpi 120 \
-       --brightness 1.0 --gamma 0.76:0.75:0.68 &
+#xrandr --output HDMI-1 --mode 1920x1080 --rate 60.00 --dpi 120 --brightness 1.0 --gamma 0.76:0.75:0.68 &
+
+xrandr --dpi 120 \
+	   --output HDMI-A-0 --primary --mode 1920x1080 --rate 60.00 --pos 0x0 --rotate normal --brightness 1.0 --gamma 0.76:0.75:0.68 \
+	   --output DVI-I-0 --mode 1920x1080 --rate 60.00 --right-of HDMI-A-0 --rotate left --brightness 1.0 --gamma 0.76:0.75:0.68 &
+
 xrdb -merge "$XDG_CONFIG_HOME/x11/xresources"
 
 #exec dwm
-
-exec emacs
+#xec dbus-launch --exit-with-session emacs
+exec bspwm
