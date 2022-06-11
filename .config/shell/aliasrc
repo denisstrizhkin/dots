@@ -2,7 +2,7 @@
 
 f_mpv () { mpv --no-input-default-bindings "$1" & disown; }
 
-alias ls="ls --color=auto"
+alias ls="ls -Fa"
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -iv"
@@ -19,6 +19,6 @@ alias s_v="doas vis"
 alias vim=vim-x11
 
 alias s_r="doas reboot"
-alias s_p="doas poweroff"
+alias s_p="doas shutdown -p now"
 
 alias g_dot="git --git-dir=\"$XDG_CONFIG_HOME\"/dotfiles/ --work-tree=\"$HOME\""
