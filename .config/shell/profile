@@ -1,9 +1,11 @@
 #!/bin/ksh
 
-export VISUAL=emacsclient
+export VISUAL="emacsclient -c"
 export EDITOR="$VISUAL"
-export TERMINAL=st
+export TERMINAL=xterm
 export BROWSER=firefox
+
+export LC_CTYPE="en_US.UTF-8"
 
 # mpd
 export MPD_HOST=localhost

@@ -24,107 +24,6 @@
   :custom (straight-use-package-by-default t))
 #+END_SRC
 
-** EXWM
-#+BEGIN_SRC emacs-lisp :results none
-;;; Disable menu-bar, tool-bar and scroll-bar to increase the usable space.
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-;;; Also shrink fringes to 1 pixel.
-;(fringe-mode 1)
-;
-;(setq display-time-default-load-average nil)
-;(display-time-mode t)
-;(display-battery-mode t)
-;
-;(server-start)
-;
-;(use-package exwm
-;  :config
-;  (require 'exwm-config)
-;
-;  (require 'exwm-randr)
-;  (setq exwm-randr-workspace-monitor-plist '(1 "DVI-I-0" 3 "DVI-I-0"))
-;  (exwm-randr-enable)
-;
-;  (setq exwm-workspace-index-map
-;	(lambda (index) (number-to-string (1+ index))))  
-;  (setq exwm-workspace-number 5)
-;
-;  (add-hook 'exwm-update-class-hook
-;            (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
-;  (add-hook 'exwm-update-title-hook
-;            (lambda () (exwm-workspace-rename-buffer exwm-title)))
-;
-;  ;; Global keybindings can be defined with `exwm-input-global-keys'.
-;  ;; Here are a few examples:
-;  (setq exwm-input-global-keys
-;	`(
-;          ;; Bind "s-r" to exit char-mode and fullscreen mode.
-;          ([?\s-r] . exwm-reset)
-;          ;; Bind "s-w" to switch workspace interactively.
-;          ([?\s-w] . exwm-workspace-switch)
-;          ;; Bind "s-0" to "s-9" to switch to a workspace by its index.
-;          ,@(mapcar (lambda (i)
-;                      `(,(kbd (format "s-%d" i)) .
-;			(lambda ()
-;                          (interactive)
-;                          (exwm-workspace-switch , (1- i)))))
-;                    (number-sequence 1 5))
-;          ;; Bind "s-&" to launch applications ('M-&' also works if the output
-;          ;; buffer does not bother you).
-;          ([?\s-&] . (lambda (command)
-;		       (interactive (list (read-shell-command "$ ")))
-;		       (start-process-shell-command command nil command)))
-;          ;; Bind "s-<f2>" to "slock", a simple X display locker.
-;          ([s-f2] . (lambda ()
-;		      (interactive)
-;		      (start-process "" nil "/usr/bin/slock")))))
-;
-;  ;; To add a key binding only available in line-mode, simply define it in
-;  ;; `exwm-mode-map'.  The following example shortens 'C-c q' to 'C-q'.
-;  (define-key exwm-mode-map [?\C-q] #'exwm-input-send-next-key)
-;  (define-key exwm-mode-map [print] #'screenshot-selected-region)
-;
-;  ;; The following example demonstrates how to use simulation keys to mimic
-;  ;; the behavior of Emacs.  The value of `exwm-input-simulation-keys` is a
-;  ;; list of cons cells (SRC . DEST), where SRC is the key sequence you press
-;  ;; and DEST is what EXWM actually sends to application.  Note that both SRC
-;  ;; and DEST should be key sequences (vector or string).
-;  (setq exwm-input-simulation-keys
-;	'(
-;          ;; movement
-;          ([?\C-b] . [left])
-;          ([?\M-b] . [C-left])
-;          ([?\C-f] . [right])
-;          ([?\M-f] . [C-right])
-;          ([?\C-p] . [up])
-;          ([?\C-n] . [down])
-;          ([?\C-a] . [home])
-;          ([?\C-e] . [end])
-;          ([?\M-v] . [prior])
-;          ([?\C-v] . [next])
-;          ([?\C-d] . [delete])
-;          ([?\C-k] . [S-end delete])
-;          ;; cut/paste.
-;          ([?\C-w] . [?\C-x])
-;          ([?\M-w] . [?\C-c])
-;          ([?\C-y] . [?\C-v])
-;          ;; search
-;          ([?\C-s] . [?\C-f])))
-;
-;
-;
-;  (exwm-enable)
-;
-;  (require 'exwm-systemtray)
-;  (exwm-systemtray-enable)
-;
-;  ;; Enable exwm input method. (Does not work in QT apps unfotunatelly.)
-;  (require 'exwm-xim)
-;  (exwm-xim-enable)
-;  (push ?\C-\\ exwm-input-prefix-keys))
-#+END_SRC
 ** System monitor - symon
 #+BEGIN_SRC emacs-lisp :results none
 ; does not work
@@ -266,6 +165,10 @@
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
 ;; Function for making screenshots of the selected region with scrot.
 (global-set-key (kbd "<print>") 'screenshot-selected-region)
 
@@ -343,32 +246,25 @@ SIC
 ** FONTS
 #+BEGIN_SRC emacs-lisp :results none
 ;; font size
-(set-face-attribute 'default nil :height 110)
-
 (defun styling/set-fonts()
   ;; main font
-  (when (member "Iosevka" (font-family-list))
-    (set-frame-font "Iosevka" t t))
+  (when (member "DejaVu Sans Mono" (font-family-list))
+    (set-frame-font "DejaVu Sans Mono" t t))
 
   ;; emoji font
   (when (member "Noto Color Emoji" (font-family-list))
-    (set-fontset-font t 'emoji "Noto Color Emoji"))
-
-  ;; symbols font
-  (when (member "Iosevka" (font-family-list))
-    (set-fontset-font t 'symbol "Iosevka"))
+    (set-fontset-font t nil "Noto Color Emoji"))
 
   ;; japanese font
   (when (member "IPAGothic" (font-family-list))
     (set-fontset-font t 'kana "IPAGothic")
-    (set-fontset-font t 'han  "IPAGOthic"))
-
-  ;; cyrillic font
-  (when (member "Iosevka" (font-family-list))
-    (set-fontset-font t 'cyrillic "Iosevka")))
+    (set-fontset-font t 'han  "IPAGOthic")))
 
 (add-hook 'after-init-hook 'styling/set-fonts)
 (add-hook 'server-after-make-frame-hook 'styling/set-fonts)
+
+(use-package emojify
+  :hook (after-init . global-emojify-mode))
 #+END_SRC
 
 ** LANGTOOL
