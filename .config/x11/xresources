@@ -55,6 +55,7 @@ XTerm*faceNameDobulesize: Noto Color Emoji
 XTerm*faceSize: 11
 XTerm*renderFont: true
 
+XTerm*metaSendsEscape: true
 xterm*selectToClipboard: true
 xterm*translations: #override \n\
 	Ctrl Shift <KeyPress>C: select-end(SELECT, CLIPBOARD) \n\
