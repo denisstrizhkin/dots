@@ -22,6 +22,7 @@ mpd --kill; mpd &
 
 xrdb -merge "$XDG_CONFIG_HOME"/x11/xresources
 
-xsetroot -solid black
+xsetroot -solid black &
+setxkbmap -layout us,ru -option -option grp:win_space_toggle &
 
 exec bspwm

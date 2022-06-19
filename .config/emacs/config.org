@@ -119,6 +119,21 @@
 
 (setq-default css-indent-offset 2)
 
+(show-paren-mode 1)
+
+(add-hook 'java-mode-hook (lambda ()
+			    (setq c-basic-offset 2
+				  tab-width 2
+				  indent-tabs-mode nil)))
+
+(use-package emmet-mode
+  :config
+  (add-hook 'mhtml-mode 'emmet-mode))
+
+(use-package yaml-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+
 (use-package lsp-mode
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
@@ -127,10 +142,28 @@
 	 (go-mode . lsp)
 	 (mhtml-mode . lsp)
 	 (css-mode . lsp)
+	 (yaml-mode . lsp)
+	 
 	 ;; if you want which-key integration
 	 (lsp-mode . lsp-enable-which-key-integration))
+  :config
+  (setq lsp-completion-enable-additional-text-edit 'lsp)
 
   :commands lsp)
+
+(use-package projectile)
+(use-package yasnippet :config (yas-global-mode))
+(use-package hydra)
+(use-package lsp-ui)
+(use-package lsp-java
+  :config
+  (require 'dap-java)
+  (add-hook 'java-mode-hook 'lsp))
+(use-package dap-mode :after lsp-mode :config (dap-auto-configure-mode))
+(use-package helm-lsp)
+(use-package helm
+  :config (helm-mode))
+(use-package lsp-treemacs)
 #+END_SRC
 
 ** FILES BACKUPS
@@ -203,8 +236,7 @@
 (use-package pass)
 #+END_SRC
 
-** MU
-SIC
+** MUSIC
 #+BEGIN_SRC emacs-lisp :results none
 ;(use-package simple-mpc
 ;  :config
@@ -252,8 +284,8 @@ SIC
     (set-frame-font "DejaVu Sans Mono" t t))
 
   ;; emoji font
-  (when (member "Noto Color Emoji" (font-family-list))
-    (set-fontset-font t nil "Noto Color Emoji"))
+  (when (member "Noto Emoji" (font-family-list))
+    (set-fontset-font t nil "Noto Emoji"))
 
   ;; japanese font
   (when (member "IPAGothic" (font-family-list))
@@ -273,8 +305,8 @@ SIC
   :config
   (setq ispell-program-name "hunspell")
   (ispell-set-spellchecker-params) ;; ispell initialization, a mandatory call
-  (ispell-hunspell-add-multi-dic "en_US,ru_RU")
-  (ispell-change-dictionary "en_US,ru_RU" t))
+  (ispell-hunspell-add-multi-dic "en-GB,ru")
+  (ispell-change-dictionary "en-GB,ru" t))
 
 (use-package flyspell
   :config
@@ -286,7 +318,8 @@ SIC
 #+BEGIN_SRC emacs-lisp :results none
 (use-package aggressive-indent
   :config
-  (global-aggressive-indent-mode 1))
+  (global-aggressive-indent-mode 1)
+  (add-to-list 'aggressive-indent-excluded-modes 'java-mode))
 #+END_SRC
 
 ** ORG MODE

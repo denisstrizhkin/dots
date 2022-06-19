@@ -1,13 +1,9 @@
 #!/bin/ksh
 
-f_mpv () { mpv --no-input-default-bindings "$1" & disown; }
-
 alias ls="ls -Fa"
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -iv"
-
-alias ytfzf="ytfzf -D"
 
 alias neofetch="neofetch --ascii_distro OpenBSD_small"
 
@@ -17,8 +13,6 @@ alias s_xq="doas xbps-query"
 alias s_xi_snf="s_xi --repository hostdir/binpkgs/nonfree"
 alias s_xi_s="s_xi --repository hostdir/binpkgs"
 
-alias s_v="doas vis"
-alias vim=vim-x11
 
 alias s_r="doas reboot"
 alias s_p="doas shutdown -p now"
