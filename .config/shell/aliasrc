@@ -6,6 +6,7 @@ alias mv="mv -iv"
 alias rm="rm -iv"
 
 alias neofetch="neofetch --ascii_distro OpenBSD_small"
+alias ytfzf="ytfzf -fD"
 
 alias s_xi="doas xbps-install"
 alias s_xr="doas xbps-remove"

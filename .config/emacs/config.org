@@ -1,8 +1,9 @@
-
 * EMACS config.org
-** USEPACKAGE setup
+
+** Package Management
+
+*** Install straight.el
 #+BEGIN_SRC emacs-lisp :results none
-;; Install straight.el
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -15,7 +16,10 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+#+END_SRC
 
+*** use-package setup
+#+BEGIN_SRC emacs-lisp  :results none
 ;; Install use-package
 (straight-use-package 'use-package)
 
@@ -24,66 +28,9 @@
   :custom (straight-use-package-by-default t))
 #+END_SRC
 
-** System monitor - symon
-#+BEGIN_SRC emacs-lisp :results none
-; does not work
-#+END_SRC
+** Visual Experience
 
-** WHICH-KEY
-#+BEGIN_SRC emacs-lisp
-  (use-package which-key
-    :config
-    (which-key-mode)
-  )
-#+END_SRC
-
-** LAMMPS-MODE
-#+BEGIN_SRC emacs-lisp
-(use-package lammps-mode
-  :mode (
-	 ("\\.in\\'" . lammps-mode)
-	 ("\\.lmp\\'" . lammps-mode)))
-#+END_SRC
-
-** OPENWITH
-#+BEGIN_SRC emacs-lisp
-(use-package openwith
-  :config
-  (setq openwith-associations (list
-			       (list (openwith-make-extension-regexp
-				      '("m4v" "mp4" "MP4" "MTS" "mpg" "mov" "avi" "AVI" "flv"))
-				     "mpv"
-				     '(file))
-			       (list (openwith-make-extension-regexp
-				      '("mp3" "ogg"))
-				     "mpv"
-				     '(file))
-			       (list (openwith-make-extension-regexp
-				      '("pdf"))
-				     "zathura"
-				     '(file))
-			       (list (openwith-make-extension-regexp
-				      '("xls" "xlsx"))
-				     "libreoffice --calc"
-				     '(file))
-			       (list (openwith-make-extension-regexp
-				      '("doc" "docx" "odt"))
-				     "libreoffice --writer"
-				     '(file))))
-  (openwith-mode 1))
-#+END_SRC
-
-** MAGIT
-#+BEGIN_SRC emacs-lisp
-(use-package magit)
-#+END_SRC
-
-** VTERM
-#+BEGIN_SRC emacs-lisp
-(use-package vterm)
-#+END_SRC
-
-** THEME
+*** Theme
 #+BEGIN_SRC emacs-lisp
   (defun true-color-p ()
     ;; always true colors
@@ -111,132 +58,108 @@
     :bind ("<f5>" . modus-themes-toggle))
 #+END_SRC
 
-** CODE HIGHTLIGHTING
+*** Set utf-8 encoding
 #+BEGIN_SRC emacs-lisp :results none
-(use-package company
-  :config
-  (global-company-mode t))
-
-(setq-default css-indent-offset 2)
-
-(show-paren-mode 1)
-
-(add-hook 'java-mode-hook (lambda ()
-			    (setq c-basic-offset 2
-				  tab-width 2
-				  indent-tabs-mode nil)))
-
-(use-package emmet-mode
-  :config
-  (add-hook 'mhtml-mode 'emmet-mode))
-
-(use-package yaml-mode
-  :config
-  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
-
-(use-package lsp-mode
-  :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-	 (go-mode . lsp)
-	 (mhtml-mode . lsp)
-	 (css-mode . lsp)
-	 (yaml-mode . lsp)
-	 
-	 ;; if you want which-key integration
-	 (lsp-mode . lsp-enable-which-key-integration))
-  :config
-  (setq lsp-completion-enable-additional-text-edit 'lsp)
-
-  :commands lsp)
-
-(use-package projectile)
-(use-package yasnippet :config (yas-global-mode))
-(use-package hydra)
-(use-package lsp-ui)
-(use-package lsp-java
-  :config
-  (require 'dap-java)
-  (add-hook 'java-mode-hook 'lsp))
-(use-package dap-mode :after lsp-mode :config (dap-auto-configure-mode))
-(use-package helm-lsp)
-(use-package helm
-  :config (helm-mode))
-(use-package lsp-treemacs)
-#+END_SRC
-
-** FILES BACKUPS
-#+BEGIN_SRC emacs-lisp
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
-#+END_SRC
-
-** DIRED DIR SIZE
-#+BEGIN_SRC emacs-lisp
-(defun dired-get-size ()
-  (interactive)
-  (let ((files (dired-get-marked-files)))
-    (with-temp-buffer
-      (apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
-      (message "Size of all marked files: %s"
-	       (progn 
-		 (re-search-backward "\\(^[0-9.,]+[A-Za-z]+\\).*total$")
-		 (match-string 1))))))
-
-(define-key dired-mode-map (kbd "?") 'dired-get-size)
-#+END_SRC
-
-** GLOBAL SETTINGS
-#+BEGIN_SRC emacs-lisp :results none
-;; Set utf-8 encoding for everthing
 (setq locale-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
+#+END_SRC
 
+*** Set fonts
+ #+BEGIN_SRC emacs-lisp :results none
+ ;; font size
+ (defun styling/set-fonts()
+   ;; main font
+   (when (member "DejaVu Sans Mono" (font-family-list))
+     (set-frame-font "DejaVu Sans Mono" t t))
+
+   ;; emoji font
+   (when (member "Noto Emoji" (font-family-list))
+     (set-fontset-font t nil "Noto Emoji"))
+
+   ;; japanese font
+   (when (member "IPAGothic" (font-family-list))
+     (set-fontset-font t 'kana "IPAGothic")
+     (set-fontset-font t 'han  "IPAGOthic")))
+
+ (add-hook 'after-init-hook 'styling/set-fonts)
+ (add-hook 'server-after-make-frame-hook 'styling/set-fonts)
+
+ (use-package emojify
+   :hook (after-init . global-emojify-mode))
+ #+END_SRC
+
+*** Disable some ui features
+#+BEGIN_SRC emacs-lisp :results none
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+#+END_SRC
 
-;; Function for making screenshots of the selected region with scrot.
-(global-set-key (kbd "<print>") 'screenshot-selected-region)
+*** Enable line numbering during text editing
+#+BEGIN_SRC emacs-lisp :results none
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'text-mode-hook 'display-line-numbers-mode)
+#+END_SRC
 
-(defun screenshot-selected-region ()
-		  (interactive)
-		  (message "Select a region")
-		  (let ((path (concat "~/Pictures/screenshots/"
-				      (format-time-string "%Y-%m-%d-%T-screenshot") ".png")))
-		    (shell-command (concat "scrot " path " -s -f --quality 100") nil (get-buffer "*Messages*"))
-		    (message (concat "Scrennshot saved to " path))))
-
-;; Set default input method.
+*** Input methods
+#+BEGIN_SRC emacs-lisp :results none
 (setq default-input-method "russian-computer")
+#+END_SRC
 
-;; Disable anoying org mode code blocks indentation.
-(setq org-edit-src-content-indentation 0)
+*** Line wrapping
+#+BEGIN_SRC emacs-lisp :results none
+(setq-default fill-column 80)
+(setq-default word-wrap t)
+#+END_SRC
 
+*** Highlight current line
+#+BEGIN_SRC emacs-lisp :results none
+(global-hl-line-mode t)
+#+END_SRC
+
+*** Scroll conservatively
+#+BEGIN_SRC emacs-lisp :results none
+(setq scroll-conservatively 100)
+#+END_SRC
+
+** Quality Of Life
+
+*** Aliases
+ #+BEGIN_SRC emacs-lisp :results none
+ (defalias 'yes-or-no-p 'y-or-n-p) ; y or n is enough
+ (defalias 'list-buffers 'ibuffer) ; always use ibuffer
+ #+END_SRC
+
+*** Indentation
+#+BEGIN_SRC emacs-lisp :results none
 ;; Disable electric-indent mode.
 (electric-indent-mode -1)
 (add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
 
-;; Set default wrap column.
-(setq-default fill-column 80)
+(setq-default tab-width 2)
+(setq-default standard-indent 2)
+(setq-default ident-tabs-mode nil) ; disable tabs
 
-;; Enable global line numbering.
-(global-display-line-numbers-mode 1)
-
-;; Some aliases.
-(defalias 'yes-or-no-p 'y-or-n-p) ; y or n is enough
-(defalias 'list-buffers 'ibuffer) ; always use ibuffer
-
-(use-package pass)
+;; Use aggressive indent globally
+(use-package aggressive-indent
+  :config
+  (global-aggressive-indent-mode 1)
+  (add-to-list 'aggressive-indent-excluded-modes 'java-mode))
 #+END_SRC
 
-** MUSIC
+*** which-key setup
+#+BEGIN_SRC emacs-lisp :results none
+(use-package which-key
+  :config
+  (which-key-mode))
+#+END_SRC
+
+** Files
+
+*** Music player
 #+BEGIN_SRC emacs-lisp :results none
 ;(use-package simple-mpc
 ;  :config
@@ -275,31 +198,130 @@
   (message "MPD database updated!"))
 #+END_SRC
 
-** FONTS
-#+BEGIN_SRC emacs-lisp :results none
-;; font size
-(defun styling/set-fonts()
-  ;; main font
-  (when (member "DejaVu Sans Mono" (font-family-list))
-    (set-frame-font "DejaVu Sans Mono" t t))
+*** Display dired dir size
+#+BEGIN_SRC emacs-lisp
+(defun dired-get-size ()
+  (interactive)
+  (let ((files (dired-get-marked-files)))
+    (with-temp-buffer
+      (apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
+      (message "Size of all marked files: %s"
+	       (progn 
+		 (re-search-backward "\\(^[0-9.,]+[A-Za-z]+\\).*total$")
+		 (match-string 1))))))
 
-  ;; emoji font
-  (when (member "Noto Emoji" (font-family-list))
-    (set-fontset-font t nil "Noto Emoji"))
-
-  ;; japanese font
-  (when (member "IPAGothic" (font-family-list))
-    (set-fontset-font t 'kana "IPAGothic")
-    (set-fontset-font t 'han  "IPAGOthic")))
-
-(add-hook 'after-init-hook 'styling/set-fonts)
-(add-hook 'server-after-make-frame-hook 'styling/set-fonts)
-
-(use-package emojify
-  :hook (after-init . global-emojify-mode))
+(define-key dired-mode-map (kbd "?") 'dired-get-size)
 #+END_SRC
 
-** LANGTOOL
+*** Dired openwith setup
+ #+BEGIN_SRC emacs-lisp
+ (use-package openwith
+   :config
+   (setq openwith-associations (list
+				(list (openwith-make-extension-regexp
+				       '("m4v" "mp4" "MP4" "MTS" "mpg" "mov" "avi" "AVI" "flv" "mkv"))
+				      "mpv"
+				      '(file))
+				(list (openwith-make-extension-regexp
+				       '("mp3" "ogg"))
+				      "mpv"
+				      '(file))
+				(list (openwith-make-extension-regexp
+				       '("pdf"))
+				      "zathura"
+				      '(file))
+				(list (openwith-make-extension-regexp
+				       '("xls" "xlsx"))
+				      "libreoffice --calc"
+				      '(file))
+				(list (openwith-make-extension-regexp
+				       '("doc" "docx" "odt"))
+				      "libreoffice --writer"
+				      '(file))))
+   (openwith-mode 1))
+ #+END_SRC
+
+*** Files backups
+#+BEGIN_SRC emacs-lisp
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+#+END_SRC
+
+** Coding
+
+*** lammps-mode setup
+#+BEGIN_SRC emacs-lisp :results none
+(use-package lammps-mode
+  :mode (
+	 ("\\.in\\'" . lammps-mode)
+	 ("\\.lmp\\'" . lammps-mode)))
+#+END_SRC
+
+*** company setup
+#+BEGIN_SRC emacs-lisp :results none
+(use-package company
+  :config
+  (global-company-mode t))
+#+END_SRC
+
+*** web-dev
+#+BEGIN_SRC emacs-lisp :results none
+(setq-default css-indent-offset 2)
+
+(use-package emmet-mode
+  :config
+  (add-hook 'mhtml-mode 'emmet-mode))
+#+END_SRC
+
+*** lsp-mode setup
+#+BEGIN_SRC emacs-lisp :results none
+(use-package lsp-mode
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+	 (go-mode . lsp)
+	 (mhtml-mode . lsp)
+	 (css-mode . lsp)
+	 (yaml-mode . lsp)
+	 
+	 ;; if you want which-key integration
+	 (lsp-mode . lsp-enable-which-key-integration))
+  :config
+  (setq lsp-completion-enable-additional-text-edit 'lsp)
+
+  :commands lsp)
+#+END_SRC
+
+*** java-mode setup
+#+BEGIN_SRC emacs-lisp :results none
+(show-paren-mode 1)
+
+(add-hook 'java-mode-hook (lambda ()
+			    (setq c-basic-offset 2)))
+
+(use-package lsp-java
+  :config
+  (add-hook 'java-mode-hook 'lsp))
+#+END_SRC
+
+*** yaml-mode setup
+#+BEGIN_SRC emacs-lisp :results none
+(use-package yaml-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+#+END_SRC
+
+*** MAGIT
+#+BEGIN_SRC emacs-lisp
+(use-package magit)
+#+END_SRC
+
+** Text editing
+
+*** Spelling
 #+BEGIN_SRC emacs-lisp :results none
 (use-package ispell
   :config
@@ -314,15 +336,10 @@
 	    (lambda () (flyspell-mode 1))))
 #+END_SRC
 
-** AGGRESSIVE INDENT
-#+BEGIN_SRC emacs-lisp :results none
-(use-package aggressive-indent
-  :config
-  (global-aggressive-indent-mode 1)
-  (add-to-list 'aggressive-indent-excluded-modes 'java-mode))
-#+END_SRC
-
-** ORG MODE
+** org-mode setup
 #+BEGIN_SRC emacs-lisp results: none
+;; Disable anoying org mode code blocks indentation.
+(setq org-edit-src-content-indentation 0)
+
 (define-key org-mode-map (kbd "C-c C-'") 'org-edit-src-code)
 #+END_SRC
