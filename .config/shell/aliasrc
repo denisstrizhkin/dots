@@ -8,6 +8,8 @@ alias rm="rm -iv"
 alias neofetch="neofetch --ascii_distro OpenBSD_small"
 alias ytfzf="ytfzf -fD"
 
+alias ect="emacsclient -t"
+
 alias s_xi="doas xbps-install"
 alias s_xr="doas xbps-remove"
 alias s_xq="doas xbps-query"

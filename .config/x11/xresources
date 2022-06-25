@@ -60,3 +60,14 @@ xterm*selectToClipboard: true
 xterm*translations: #override \n\
 	Ctrl Shift <KeyPress>C: select-end(SELECT, CLIPBOARD) \n\
 	Ctrl Shift <KeyPress>V: insert-selection(SELECT, CLIPBOARD)
+
+! termbar
+! ==========
+termbar*faceName: xft:monospace:pixelsize=16
+termbar*geometry: 3840x1+0+0
+termbar*internalBorder: 4
+termbar*saveLines: 0
+termbar*scrollBar: false
+termbar*title: termbar
+termbar*background: #000000
+termbar*foreground: #ffffff

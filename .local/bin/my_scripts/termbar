@@ -1,0 +1,85 @@
+#!/bin/sh
+
+## Debug
+#set -x
+
+trap 'exec $0' HUP # Restart itself 
+trap 'tput cnorm; exit 1' INT QUIT TERM
+
+
+esc="\033"
+reset="${esc}[0m"
+redf="${esc}[31m"
+cyanf="${esc}[36m";
+purplef="${esc}[35m"
+pipe="${purplef}|${reset}"
+
+
+today()
+{
+	DATE=$(date '+%a %d %b %H:%M')
+}
+
+
+desktop_id()
+{
+		DESKTOP_ID=$(printf '%3s' $(bspc query -D --names -d))
+}
+
+
+cpu()
+{
+		CPU_TEMP=$(sysctl hw.sensors.ksmn0.temp0 | cut -d "=" -f 2 | cut -d "." -f 1)
+		CPU_SPEED=$(printf "%4s" $(sysctl hw.cpuspeed | cut -d "=" -f 2 | cut -d "." -f 1))
+
+		local cpu_idle=$(printf "%2.1f" $(top -bn1 | grep CPU | awk '{print $13}' | head -n 1) 2>/dev/null)
+		local cpu_busy=$(echo "scale=1; 100-$cpu_idle" | bc)
+
+		CPU_LOAD=$(printf "%2.1f" $cpu_busy)
+}
+
+
+win_name()
+{
+		WIN_NAME=$(xprop -id "$(bspc query -N focused -n)" WM_NAME | cut -d\" -f2)
+}
+
+
+bat()
+{
+		BAT=$(apm -l)
+}
+
+
+bat_status()
+{
+		STATUS=$(sysctl hw.sensors.acpiac0.indicator0 | grep -c On)
+		if [ ${STATUS} -eq "1" ]; then
+				BAT_STATUS=$(echo Connected)
+		else
+				BAT_STATUS=$(echo ${redf}Disconnected${reset})
+		fi
+}
+
+
+mem()
+{
+		MEM=$(top -n | grep Memory | awk {'print $6'})
+}
+
+
+tput civis
+while true; do
+		today
+		desktop_id
+		cpu
+		mem
+		win_name
+		#			bat
+		#			bat_status
+		tput cup 1 0
+		printf "[${DESKTOP_ID}] ${pipe} ${DATE} ${pipe} ${cyanf}CPU:${reset} ${CPU_LOAD} %% ${CPU_SPEED} MHz (${CPU_TEMP}°) ${pipe} ${cyanf}Mem:${reset} ${MEM} "
+		#			printf "${pipe} ${cyanf}Bat:${reset} $BAT - ${BAT_STATUS} ${pipe}"
+		printf "${pipe} ${WIN_NAME}" echo "\e[1A"
+		sleep 1
+done
