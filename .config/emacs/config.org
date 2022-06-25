@@ -102,6 +102,8 @@
 #+BEGIN_SRC emacs-lisp :results none
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
+
+(add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
 #+END_SRC
 
 *** Input methods
@@ -250,6 +252,12 @@
 #+END_SRC
 
 ** Coding
+
+*** sql-mode
+#+BEGIN_SRC emacs-lisp :results none
+(add-hook 'sql-mode-hook (lambda ()
+													 (setq indent-tabs-mode nil)))
+#+END_SRC
 
 *** lammps-mode setup
 #+BEGIN_SRC emacs-lisp :results none

@@ -11,18 +11,19 @@ export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXXXXXXXXX)
 
 # set im method
 #export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
+#export QT_IM_MODULE=fcitx
 #export XMODIFIERS=@im=fcitx
-export XMODIFIERS=@im=exwm-xim
-export GTK_IM_MODULE=xim
-export CLUTTER_IM_MODULE=xim
 
 emacs --daemon &
 mpd --kill; mpd &
 
+transmission-daemon &
+
 xrdb -merge "$XDG_CONFIG_HOME"/x11/xresources
 
 xsetroot -solid black &
+xet -s off &
+
 setxkbmap -layout us,ru -option -option grp:win_space_toggle &
 
 exec bspwm
