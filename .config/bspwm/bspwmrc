@@ -28,6 +28,7 @@ bspc rule -a Zathura state=tiled
 bspc rule -a Firefox state=tiled
 bspc rule -a termbar state=floating manage=off
 
+exec xterm -name termbar -class termbar -T termbar -e "$HOME"/.local/bin/my_scripts/termbar &
 
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'

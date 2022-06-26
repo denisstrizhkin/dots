@@ -27,5 +27,4 @@ xet -s off &
 
 setxkbmap -layout us,ru -option -option grp:win_space_toggle &
 
-exec xterm -name termbar -class termbar -T termbar -e "$HOME"/.local/bin/my_scripts/termbar &
 exec bspwm
