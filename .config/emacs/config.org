@@ -80,9 +80,9 @@
      (set-fontset-font t nil "Noto Emoji"))
 
    ;; japanese font
-   (when (member "IPAGothic" (font-family-list))
-     (set-fontset-font t 'kana "IPAGothic")
-     (set-fontset-font t 'han  "IPAGOthic")))
+   (when (member "VL Gothic" (font-family-list))
+     (set-fontset-font t 'kana "VL Gothic")
+     (set-fontset-font t 'han  "VL Gothic")))
 
  (add-hook 'after-init-hook 'styling/set-fonts)
  (add-hook 'server-after-make-frame-hook 'styling/set-fonts)

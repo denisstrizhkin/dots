@@ -41,7 +41,8 @@ cpu()
 
 win_name()
 {
-		WIN_NAME=$(xprop -id "$(bspc query -N focused -n)" WM_NAME | cut -d\" -f2)
+		WIN_NAME=$(xprop -id "$(bspc query -N focused -n)" WM_NAME 2>/dev/null | cut -d\" -f2)
+		WIN_NAME=$(printf "%60s" "$(echo "$WIN_NAME" | cut -c 1-60)")
 }
 
 
@@ -64,7 +65,13 @@ bat_status()
 
 mem()
 {
-		MEM=$(top -n | grep Memory | awk {'print $6'})
+		local mem_in_use=$(top -b | grep Memory | awk '{print $3}' | cut -f 1 -d/)
+		local mem_in_use=$(echo "$mem_in_use" | cut -f 1 -dM)
+		
+		local mem_all=$(sysctl hw.physmem | cut -f 2 -d=)
+		local mem_all=$(echo "scale=1; $mem_all / 1024 / 1024" | bc)
+
+		MEM=$(printf "%2.1f" $(echo "scale=1; $mem_in_use * 100 / $mem_all" | bc))
 }
 
 
@@ -78,7 +85,11 @@ while true; do
 		#			bat
 		#			bat_status
 		tput cup 1 0
-		printf "[${DESKTOP_ID}] ${pipe} ${DATE} ${pipe} ${cyanf}CPU:${reset} ${CPU_LOAD} %% ${CPU_SPEED} MHz (${CPU_TEMP}°) ${pipe} ${cyanf}Mem:${reset} ${MEM} "
+		
+		printf " [${DESKTOP_ID}] "
+		printf "${pipe} ${DATE} "
+		printf "${pipe} C: ${CPU_LOAD}%% ${CPU_SPEED}MHz ${CPU_TEMP}° "
+		printf "${pipe} M: ${MEM}%% "
 		#			printf "${pipe} ${cyanf}Bat:${reset} $BAT - ${BAT_STATUS} ${pipe}"
 		printf "${pipe} ${WIN_NAME}" echo "\e[1A"
 		sleep 1
