@@ -257,6 +257,9 @@
 #+BEGIN_SRC emacs-lisp :results none
 (add-hook 'sql-mode-hook (lambda ()
 													 (setq indent-tabs-mode nil)))
+
+(add-hook 'conf-space-mode-hook (lambda()
+														(setq indent-tabs-mode nill)))
 #+END_SRC
 
 *** lammps-mode setup
