@@ -23,7 +23,7 @@ today()
 
 desktop_id()
 {
-		DESKTOP_ID=$(printf '%3s' $(bspc query -D --names -d))
+		DESKTOP_ID=$(xprop -root 32c '\t$0' _NET_CURRENT_DESKTOP | cut -f 2)
 }
 
 
@@ -81,7 +81,7 @@ while true; do
 		desktop_id
 		cpu
 		mem
-		win_name
+		#win_name
 		#			bat
 		#			bat_status
 		tput cup 1 0

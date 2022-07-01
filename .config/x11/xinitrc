@@ -16,7 +16,7 @@ export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXXXXXXXXX)
 
 mpd &
 
-emacs --fg-daemon &
+emacs --fg-daemon 2>1 1>"$XDG_CONFIG_HOME"/emacs/emacs.log &
 
 transmission-daemon &
 
@@ -27,4 +27,27 @@ xet -s off &
 
 setxkbmap -layout us,ru -option -option grp:win_space_toggle &
 
-exec bspwm
+
+
+_monitor_connected () { ! [ -z "$(xrandr | grep "$1 connected")" ]; }
+
+
+if _monitor_connected "HDMI-1" && _monitor_connected "DVI-I-1"; then
+    xrandr --output HDMI-1 --mode 1920x1080 --rate 60.0*+ --primary \
+					 --brightness 1.0 --gamma 0.76:0.75:0.68 \
+					 --output DVI-I-1 --mode 1920x1080 --rate 60.0*+ --right-of HDMI-1 --rotate left \
+					 --brightness 1.0 --gamma 0.76:0.75:0.68
+fi
+
+
+if _monitor_connected "eDP-1"; then
+		xrandr --output eDP-1 --mode 1920x1080 --rate 60.01*+ \
+					 --brightness 1.0 --gamma 0.76:0.75:0.68
+fi
+
+
+exec xterm -name termbar -class termbar -T termbar -e \
+		 "$HOME"/.local/bin/my_scripts/termbar &
+
+exec cwm -c "$XDG_CONFIG_HOME"/cwmrc
+#exec bspwm
