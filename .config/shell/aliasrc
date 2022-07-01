@@ -5,6 +5,7 @@ alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -iv"
 
+alias tmux="tmux -f \"$XDG_CONFIG_HOME\"/tmux.conf"
 alias neofetch="neofetch --ascii_distro OpenBSD_small"
 alias ytfzf="ytfzf -fD"
 

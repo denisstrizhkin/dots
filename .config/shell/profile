@@ -1,15 +1,22 @@
 #!/bin/ksh
 
+
+# programs
 export VISUAL="emacsclient -c"
 export EDITOR="$VISUAL"
 export TERMINAL=xterm
 export BROWSER=firefox
 
-export LC_CTYPE="en_US.UTF-8"
+
+# encoding
+export LC_CTYPE=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 
 # mpd
 export MPD_HOST=localhost
 export MPD_PORT=6601
+
 
 # home dir clean up
 export XDG_CONFIG_HOME="$HOME"/.config
@@ -17,12 +24,14 @@ export XDG_DATA_HOME="$HOME"/.local/share
 export XDG_CACHE_HOME="$HOME"/.cache
 export ENV="$XDG_CONFIG_HOME"/shell/kshrc
 
+
 # path
 export PATH="$PATH:$HOME"/.local/bin
 export PATH="$PATH:$HOME"/.local/bin/simple-dwm-bar
 export PATH="$PATH:$HOME"/.cargo/bin
 export PATH="$PATH:$HOME"/.local/bin/my_scripts
 export PATH="$PATH:"/usr/local/jdk-17/bin
+
 
 export VIM_LATEX_FOLDER="$HOME"/Documents/latex/vimlatex
 export VIM_LATEX_TEMPLATE_DIR="$VIM_LATEX_FOLDER"/templates
