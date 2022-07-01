@@ -9,7 +9,7 @@ autogroup  0  "termbar,termbar"
 # Turn on sticky-group mode
 sticky yes
 
-nnn
+
 # Reset all keybindings
 unbind-key      all
 unbind-mouse    all
@@ -38,6 +38,7 @@ bind-key  4S-q  quit
 # Programs
 bind-key  4S-Return  xterm
 bind-key  4-p        "dmenu_run -fn 'monospace:size12'"
+bind-key  4-F12      "scrot -q 100 -s -f '/home/denis/Pictures/screenshots/%Y-%m-%d-%T-screenshot.png'"
 
 
 # Close window
