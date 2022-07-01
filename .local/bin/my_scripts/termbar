@@ -52,17 +52,6 @@ bat()
 }
 
 
-bat_status()
-{
-		STATUS=$(sysctl hw.sensors.acpiac0.indicator0 | grep -c On)
-		if [ ${STATUS} -eq "1" ]; then
-				BAT_STATUS=$(echo Connected)
-		else
-				BAT_STATUS=$(echo ${redf}Disconnected${reset})
-		fi
-}
-
-
 mem()
 {
 		local mem_in_use=$(top -b | grep Memory | awk '{print $3}' | cut -f 1 -d/)
@@ -82,15 +71,15 @@ while true; do
 		cpu
 		mem
 		win_name
-		#			bat
-		#			bat_status
+		bat
+
 		tput cup 1 0
 		
 		printf " [${DESKTOP_ID}] "
 		printf "${pipe} ${DATE} "
 		printf "${pipe} C: ${CPU_LOAD}%% ${CPU_SPEED}MHz ${CPU_TEMP}° "
 		printf "${pipe} M: ${MEM}%% "
-		#			printf "${pipe} ${cyanf}Bat:${reset} $BAT - ${BAT_STATUS} ${pipe}"
+		printf "${pipe} B: ${BAT}%% "
 		printf "${pipe} ${WIN_NAME}" echo "\e[1A"
 		sleep 1
 done
