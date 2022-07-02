@@ -1,0 +1,56 @@
+#!/bin/sh
+
+set -e
+
+D="$HOME"/.local/pwm
+F="$D"/secrets
+
+die() {
+		echo "$1"
+		exit 1
+}
+
+[ -z "$1" ] && die "usage: $0 entry_name [password]"
+
+stty -echo
+if [ ! -e "$F" ]; then
+		echo "There is no passwords file. It will be created.\n"
+		echo "Specify a password."
+		echo "It should contain letters and digits only."
+		echo "Minimal length is 8 characters.\n"
+
+		read P?'Rassword: '; echo
+		read T?'Repeat: '; echo
+		
+		if ! echo "$P" | egrep -q '^[A-za-z0-9]+$' || [ ${#P} -lt 8 ]; then
+				die "Password does not meet the requirements!"
+		fi
+
+		$P != $T && die "Passwords do not match!"
+
+		mkdir -p -m 700 "$D" 2>/dev/null 
+		echo FiLeMaGiC | openssl enc -k "$P" -chacha -out "$F";
+else
+		read P?'Password: '; echo
+fi
+echo
+stty echo
+
+trim_all() {
+    set -f
+    set -- $*
+    printf '%s\n' "$*"
+    set +f
+}
+
+name=$(trim_all $1)
+
+openssl enc -k "$P" -d -chacha -in $F -out "$F"_
+head -1 "$F"_ | grep -q FiLeMaGiC || { rm "$F"_; die "Wrong password!"; }
+grep "^$name" "$F"_ && { rm "$F"_; exit; }
+
+echo $name not found, creating new entry:
+N=`openssl rand -base64 - 12 | cut -b 1-16`
+echo "$name  --  $N"
+echo "$name  --  $N" | cat "$F"_ - | openssl enc -k "$P" -chacha -out $F
+rm "$F"_

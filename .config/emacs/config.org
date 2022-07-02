@@ -138,18 +138,12 @@
 *** Indentation
 #+BEGIN_SRC emacs-lisp :results none
 ;; Disable electric-indent mode.
-(electric-indent-mode -1)
-(add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
+(electric-indent-mode 1)
+;(add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
 
 (setq-default tab-width 2)
 (setq-default standard-indent 2)
 (setq-default ident-tabs-mode nil) ; disable tabs
-
-;; Use aggressive indent globally
-(use-package aggressive-indent
-  :config
-  (global-aggressive-indent-mode 1)
-  (add-to-list 'aggressive-indent-excluded-modes 'java-mode))
 #+END_SRC
 
 *** which-key setup

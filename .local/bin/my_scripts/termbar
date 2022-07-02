@@ -42,7 +42,7 @@ cpu()
 win_name()
 {
 		local win_id=$(xprop -root _NET_ACTIVE_WINDOW | cut -f 2 -d#)
-		WIN_NAME=$(xprop -id $win_id WM_NAME | cut -f 2 -d\")
+		WIN_NAME=$(xprop -id $win_id WM_NAME 2>/dev/null | cut -f 2 -d\")
 		WIN_NAME=$(printf "%-120s" "$(echo $WIN_NAME | cut -c 1-60)")
 }
 
