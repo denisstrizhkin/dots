@@ -18,8 +18,6 @@ mpd &
 
 emacs --daemon &
 
-transmission-daemon &
-
 xrdb -merge "$XDG_CONFIG_HOME"/x11/xresources
 
 xsetroot -solid black &
