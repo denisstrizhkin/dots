@@ -4,6 +4,7 @@ FOLDER_NAME="$(date "+%Y-%m-%d_%T")"
 FOLDER="$HOME/Videos/screen_rec/$FOLDER_NAME"
 
 mkdir -p "$FOLDER"
+echo "$FOLDER" > /tmp/record_screen_last_folder
 
 trap 'kill 0' INT
 
@@ -15,7 +16,6 @@ ffmpeg -video_size 1920x1080 -framerate 30 \
 
 echo "\nSaved to: $FOLDER\n"
 
-cd "$FOLDER"
 ffmpeg -i video.mkv -i audio_pc.wav -i audio_voice.wav -c:v copy -map 0:v -map 1:a -map 2:a -y temp.mkv
 ffmpeg -i temp.mkv -filter_complex "[0:a]amerge=inputs=2[a]" -ac 2 -map 0:v -map "[a]" -c:v copy final.mkv
 

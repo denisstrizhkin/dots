@@ -139,6 +139,9 @@
 #+BEGIN_SRC emacs-lisp :results none
 ;; Disable electric-indent mode.
 (electric-indent-mode 1)
+;(add-hook 'electric-indent-mode-hook
+;					(lambda ()
+;						(define-key global-map (kbd "C-j") nil)))
 ;(add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
 
 (setq-default tab-width 2)
@@ -155,45 +158,6 @@
 
 ** Files
 
-*** Music player
-#+BEGIN_SRC emacs-lisp :results none
-;(use-package simple-mpc
-;  :config
-;  (setq simple-mpc-playlist-format "%album% : %title% - %artist%"))
-
-(use-package emms
-  :config
-  (require 'emms-player-mpd)
-  (setq emms-player-mpd-server-name "localhost"
-	emms-player-mpd-server-port "6601")
-  (setq emms-info-functions '(emms-info-mpd)
-	emms-player-list '(emms-player-mpd))
-  (emms-player-mpd-connect)
-
-  (require 'emms-volume)
-  (setq emms-volume-change-function 'emms-volume-mpd-change)
-  (global-set-key (kbd "C-c =") 'emms-volume-mode-plus)
-  (global-set-key (kbd "C-c -") 'emms-volume-mode-minus)
-  (global-set-key (kbd "C-c p") 'emms-pause)
-
-  (require 'emms-cache)
-  (emms-cache 1)
-  (emms-cache-set-from-mpd-all)
-
-  (require 'emms-mode-line)
-  (emms-mode-line 1)
-
-  (require 'emms-playing-time)
-  (emms-playing-time 1)
-
-  (require 'emms-streams))
-
-(defun mpd/update-database()
-  (interactive)
-  (call-process "mpc" nil nil nil "update")
-  (message "MPD database updated!"))
-#+END_SRC
-
 *** Display dired dir size
 #+BEGIN_SRC emacs-lisp
 (defun dired-get-size ()
@@ -206,6 +170,7 @@
 		 (re-search-backward "\\(^[0-9.,]+[A-Za-z]+\\).*total$")
 		 (match-string 1))))))
 
+(require 'dired)
 (define-key dired-mode-map (kbd "?") 'dired-get-size)
 #+END_SRC
 
@@ -250,7 +215,8 @@
 *** sql-mode
 #+BEGIN_SRC emacs-lisp :results none
 (add-hook 'sql-mode-hook (lambda ()
-													 (setq indent-tabs-mode nil)))
+													 (setq indent-tabs-mode nil)
+													 (setq tab-width 2)))
 
 (add-hook 'conf-space-mode-hook (lambda()
 														(setq indent-tabs-mode nill)))
@@ -277,39 +243,19 @@
 
 (use-package emmet-mode
   :config
-  (add-hook 'mhtml-mode 'emmet-mode))
-#+END_SRC
-
-*** lsp-mode setup
-#+BEGIN_SRC emacs-lisp :results none
-(use-package lsp-mode
-  :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-	 (go-mode . lsp)
-	 (mhtml-mode . lsp)
-	 (css-mode . lsp)
-	 (yaml-mode . lsp)
-	 
-	 ;; if you want which-key integration
-	 (lsp-mode . lsp-enable-which-key-integration))
-  :config
-  (setq lsp-completion-enable-additional-text-edit 'lsp)
-
-  :commands lsp)
+  (add-hook 'mhtml-mode-hook 'emmet-mode))
+;	(add-hook 'emmet-mode-hook
+;          (lambda ()
+;            (define-key emmet-mode-keymap (kbd "C-j") 'emmet-expand-line))))
 #+END_SRC
 
 *** java-mode setup
 #+BEGIN_SRC emacs-lisp :results none
-(show-paren-mode 1)
+		(show-paren-mode 1)
 
-(add-hook 'java-mode-hook (lambda ()
-			    (setq c-basic-offset 2)))
-
-(use-package lsp-java
-  :config
-  (add-hook 'java-mode-hook 'lsp))
+		(add-hook 'java-mode-hook (lambda ()
+							(setq c-basic-offset 2)
+							(setq indent-tabs-mode nil)))
 #+END_SRC
 
 *** yaml-mode setup
@@ -347,4 +293,9 @@
 (setq org-edit-src-content-indentation 0)
 
 (define-key org-mode-map (kbd "C-c C-'") 'org-edit-src-code)
+#+END_SRC
+
+** Email
+#+BEGIN_SRC emacs-lisp :results none
+(autoload 'notmuch "notmuch" "notmuch mail" t)
 #+END_SRC

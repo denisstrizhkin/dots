@@ -42,9 +42,8 @@ Xft.lcdfilter: lcddefault
 
 XTerm*termName: xterm-256color
 XTerm*locale: true
-XTerm*utf8: 1
-XTerm*utf8Fonts: always
 XTerm*dynamicColors: true
+Xterm*allowMouseOps: true
 
 XTerm*toolBar: false
 XTerm*scrollBar: false

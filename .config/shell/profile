@@ -23,7 +23,7 @@ export XDG_CONFIG_HOME="$HOME"/.config
 export XDG_DATA_HOME="$HOME"/.local/share
 export XDG_CACHE_HOME="$HOME"/.cache
 export ENV="$XDG_CONFIG_HOME"/shell/kshrc
-
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuch-config
 
 # path
 export PATH="$PATH:$HOME"/.local/bin
