@@ -1,0 +1,8 @@
+#!/bin/sh
+
+[ -f /tmp/record_screen_last_folder ] || exit 1
+FOLDER=$(cat /tmp/record_screen_last_folder)
+
+cd "$FOLDER"
+ffmpeg -i video.mkv -i audio_pc.wav -i audio_voice.wav -c:v copy -map 0:v -map 1:a -map 2:a -y temp.mkv
+ffmpeg -i temp.mkv -filter_complex "[0:a]amerge=inputs=2[a]" -ac 2 -map 0:v -map "[a]" -c:v copy final.mkv
