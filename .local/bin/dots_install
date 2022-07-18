@@ -1,16 +1,19 @@
 #!/bin/sh
 
-DOTS_DIR="$HOME/.config/dotfiles"
-alias g_dot="git --git-dir=$HOME/.config/dotfiles --work-tree=$HOME"
+DOTS_DIR="$HOME"/.config/dotfiles
+alias g_dot="git --git-dir=\"$HOME\"/.config/dotfiles --work-tree=\"$HOME\""
 
-cd $HOME
+cd "$HOME"
 
-cp -rf dots/. $HOME/
+cp -rf dots/. "$HOME"/
 rm -rf dots
 
-mkdir $DOTS_DIR
+mkdir "$DOTS_DIR"
 
-cp -rf .git/. $DOTS_DIR
+cp -rf .git/. "$DOTS_DIR"
 rm -rf .git
 
 g_dot config --local status.showUntrackedFiles no
+
+! [ -z "$(uname -a | grep Debian)" ] && echo "Debian"
+! [ -z "$(uname -a | grep OpenBSD)" ] && doas pkg_add -l "$HOME"/.local/share/openbsd_packages
