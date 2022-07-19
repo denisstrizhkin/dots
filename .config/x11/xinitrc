@@ -45,7 +45,7 @@ fi
 
 
 exec xterm -name termbar -class termbar -T termbar -e \
-		 "$HOME"/.local/bin/my_scripts/termbar &
+		 "$HOME"/.local/bin/termbar &
 
 exec cwm -c "$XDG_CONFIG_HOME"/cwmrc
 #exec bspwm
