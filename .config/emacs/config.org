@@ -302,7 +302,7 @@
 	(setq web-mode-enable-css-colorization t)
 )
 (use-package web-mode
-  :mode (("\\.jsx?\\'" . web-mode)
+  :mode (
 	 ("\\.tsx?\\'" . web-mode)
 	 ("\\.html\\'" . web-mode)
 	 ("\\.py\\'" . web-mode)
@@ -314,7 +314,7 @@
 
 (use-package emmet-mode
   :config
-  (add-hook 'mhtml-mode-hook 'emmet-mode))
+  (add-hook 'web-mode-hook 'emmet-mode))
 ;	(add-hook 'emmet-mode-hook
 ;          (lambda ()
 ;            (define-key emmet-mode-keymap (kbd "C-j") 'emmet-expand-line))))
