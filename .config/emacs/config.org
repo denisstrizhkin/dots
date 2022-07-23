@@ -39,23 +39,27 @@
   (defun styling/load-theme (frame)
     ;; set theme
     (select-frame frame)
-    (modus-themes-load-vivendi))
+		(load-theme 'zenburn t))
   
-  (use-package modus-themes
-    :init
-    ;; Add all your customizations prior to loading the themes
-    (setq modus-themes-italic-constructs t
-	  modus-themes-bold-constructs nil
-	  modus-themes-region '(bg-only no-extend)
-	  modus-themes-org-blocks 'gray-background)
-
-    ;; Load the theme files before enabling a theme
-    (modus-themes-load-themes)
-    :config
-    ;; Load the theme of your choice:
-    (add-hook 'after-make-frame-functions #'styling/load-theme)
-    (modus-themes-load-vivendi) ;; OR (modus-themes-load-operandi)
-    :bind ("<f5>" . modus-themes-toggle))
+;  (use-package modus-themes
+;    :init
+;    ;; Add all your customizations prior to loading the themes
+;    (setq modus-themes-italic-constructs t
+;	  modus-themes-bold-constructs nil
+;	  modus-themes-region '(bg-only no-extend)
+;	  modus-themes-org-blocks 'gray-background)
+;
+;    ;; Load the theme files before enabling a theme
+;    (modus-themes-load-themes)
+;    :config
+;    ;; Load the theme of your choice:
+;    (add-hook 'after-make-frame-functions #'styling/load-theme)
+;    (modus-themes-load-vivendi) ;; OR (modus-themes-load-operandi)
+;    :bind ("<f5>" . modus-themes-toggle))
+(use-package zenburn-theme
+	:config
+	(load-theme 'zenburn t)
+	(add-hook 'after-make-frame-functions #'styling/load-theme))
 #+END_SRC
 
 *** Set utf-8 encoding
@@ -212,6 +216,39 @@
 
 ** Coding
 
+*** lsp-mode
+#+BEGIN_SRC emacs-lisp :results none
+; lsp-mode yasnippet lsp-treemacs helm-lsp projectile hydra flycheck company avy which-key helm-xref dap-mode zenburn-theme json-mode
+(use-package json-mode)
+
+(use-package lsp-mode
+	:init
+	(setq lsp-keymap-prefix "C-c l")
+	:config
+	(setq gc-cons-threshold (* 100 1024 1024)
+				read-process-output-max (* 1024 1024)
+				create-lockfiles nil)
+	(with-eval-after-load 'js
+		 (define-key js-mode-map (kbd "M-.") nil))
+	:hook (
+				 (prog-mode . lsp)
+				 (lsp-mode . lsp-enable-which-key-integration))
+	:commands lsp)
+
+(use-package dap-mode
+	:config
+		(with-eval-after-load 'lsp-mode
+		 (require 'dap-chrome)))
+(use-package lsp-ui
+	:config
+	(setq lsp-ui-sideline-show-diagnostics t
+				lsp-ui-sideline-show-hover t
+				lsp-ui-sideline-update-mode 'line
+				lsp-ui-sideline-delay 0.1)
+	:commands lsp-ui-mode)
+(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+#+END_SRC
+		
 *** helm-mode
 #+BEGIN_SRC emacs-lisp :results none
 (use-package helm
@@ -220,28 +257,9 @@
 	(require 'helm-xref)
 	(global-set-key (kbd "M-x") 'helm-M-x)
 	(global-set-key (kbd "C-x C-f") 'helm-find-files)
-	(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 	(helm-mode 1))
 #+END_SRC
 	 
-*** lsp-mode
-#+BEGIN_SRC emacs-lisp :results none
-; lsp-mode yasnippet lsp-treemacs helm-lsp projectile hydra flycheck company avy which-key helm-xref dap-mode zenburn-theme json-mode
-(use-package dap-mode)
-(use-package json-mode)
-
-(use-package lsp-mode
-	:config
-	(setq gc-cons-threshold (* 100 1024 1024)
-				read-process-output-max (* 1024 1024))			
-	(add-hook 'prog-mode-hook #'lsp)
-	(with-eval-after-load 'lsp-mode
-		 (require 'dap-chrome)
-		 (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
-	(with-eval-after-load 'js
-		 (define-key js-mode-map (kbd "M-.") nil)))
-#+END_SRC
-		
 *** sql-mode
 #+BEGIN_SRC emacs-lisp :results none
 (add-hook 'sql-mode-hook (lambda ()
@@ -271,7 +289,28 @@
 
 *** web-dev
 #+BEGIN_SRC emacs-lisp :results none
-(setq-default css-indent-offset 2)
+(defun my/webmode-hook ()
+	"Webmode hooks."
+	(setq web-mode-enable-comment-annotation t)
+	(setq web-mode-markup-indent-offset 2)
+	(setq web-mode-code-indent-offset 2)
+	(setq web-mode-css-indent-offset 2)
+	(setq web-mode-attr-indent-offset 0)
+	(setq web-mode-enable-auto-indentation t)
+	(setq web-mode-enable-auto-closing t)
+	(setq web-mode-enable-auto-pairing t)
+	(setq web-mode-enable-css-colorization t)
+)
+(use-package web-mode
+  :mode (("\\.jsx?\\'" . web-mode)
+	 ("\\.tsx?\\'" . web-mode)
+	 ("\\.html\\'" . web-mode)
+	 ("\\.py\\'" . web-mode)
+	 ("\\.css\\'" . web-mode))
+	:config
+	(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
+  :commands web-mode
+	:hook (web-mode . my/webmode-hook))
 
 (use-package emmet-mode
   :config
