@@ -15,5 +15,33 @@ rm -rf .git
 
 g_dot config --local status.showUntrackedFiles no
 
-! [ -z "$(uname -a | grep Debian)" ] && echo "Debian"
-! [ -z "$(uname -a | grep OpenBSD)" ] && doas pkg_add -l "$HOME"/.local/share/openbsd_packages
+if [ ! -z "$(which apt)" ]; then
+		sudo apt install wget gnupg curl
+		keyring_dir=/usr/share/keyrings
+		
+		# vscodium
+		# https://github.com/VSCodium/vscodium
+		# https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo
+		wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+				| gpg --dearmor \
+				| sudo dd of="$keyring_dir"/vscodium-archive-keyring.gpg
+		echo "deb [ signed-by=$keyring_dir/vscodium-archive-keyring.gpg ] https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main" \
+				| sudo tee /etc/apt/sources.list.d/vscodium.list
+
+		# docker
+		# https://docs.docker.com/engine/install/debian/
+		curl -fsSL https://download.docker.com/linux/debian/gpg \
+				| sudo gpg --dearmor -o "$keyring_dir"/docker.gpg
+		echo \
+				"deb [arch=$(dpkg --print-architecture) signed-by=$keyring_dir/docker.gpg] https://download.docker.com/linux/debian \
+  			bullseye stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+		sudo apt update
+		sudo apt install $(cat "$HOME"/.local/share/apt_packages)
+fi
+
+if [ ! -z "$(which pkg_add)" ]; then
+		doas pkg_add -l "$HOME"/.local/share/openbsd_packages
+fi
+
+chsh -s "$(which bash)"

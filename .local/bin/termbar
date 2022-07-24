@@ -69,18 +69,18 @@ tput civis
 while true; do
 		today
 		desktop_id
-		cpu
-		mem
+#		cpu
+#		mem
 		win_name
-		bat
+#		bat
 
 		tput cup 1 0
 		
 		printf " [${DESKTOP_ID}] "
 		printf "${pipe} ${DATE} "
-		printf "${pipe} C: ${CPU_LOAD}%% ${CPU_SPEED}MHz ${CPU_TEMP}° "
-		printf "${pipe} M: ${MEM}%% "
-		printf "${pipe} B: ${BAT}%% "
+#		printf "${pipe} C: ${CPU_LOAD}%% ${CPU_SPEED}MHz ${CPU_TEMP}° "
+#		printf "${pipe} M: ${MEM}%% "
+#		printf "${pipe} B: ${BAT}%% "
 		printf "${pipe} ${WIN_NAME}" echo "\e[1A"
 		sleep 1
 done
