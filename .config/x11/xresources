@@ -18,23 +18,44 @@ Xft.lcdfilter: lcddefault
 ! Theme: modus-vivendi
 ! Description: XTerm port of modus-vivendi (Modus themes for Emacs)
 ! Author: Protesilaos Stavrou, <https://protesilaos.com>
-*background: #000000
-*foreground: #ffffff
-*color0: #000000
-*color1: #ff8059
-*color2: #44bc44
-*color3: #d0bc00
-*color4: #2fafff
-*color5: #feacd0
-*color6: #00d3d0
-*color7: #bfbfbf
-*color8: #595959
-*color9: #ef8b50
-*color10: #70b900
-*color11: #c0c530
-*color12: #79a8ff
-*color13: #b6a0ff
-*color14: #6ae4b9
+!*background: #000000
+!*foreground: #ffffff
+!*color0: #000000
+!*color1: #ff8059
+!*color2: #44bc44
+!*color3: #d0bc00
+!*color4: #2fafff
+!*color5: #feacd0
+!*color6: #00d3d0
+!*color7: #bfbfbf
+!*color8: #595959
+!*color9: #ef8b50
+!*color10: #70b900
+!*color11: #c0c530
+!*color12: #79a8ff
+!*color13: #b6a0ff
+!*color14: #6ae4b9
+!*color15: #ffffff
+
+! Theme: Zenburn
+*background: #3f3f3f
+*foreground: #dcdccc
+*cursorColor: #aaaaaa
+*color0: #3f3f3f
+*color1: #cc9393
+*color2: #7f9f7f
+*color3: #d0bf8f
+*color4: #6ca0a3
+*color5: #dc8cc3
+*color6: #93e0e3
+*color7: #dcdccc
+*color8: #989890
+*color9: #dca3a3
+*color10: #bfebbf
+*color11: #f0dfaf
+*color12: #8cd0d3
+*color13: #dc8cc3
+*color14: #93e0e3
 *color15: #ffffff
 
 ! xterm

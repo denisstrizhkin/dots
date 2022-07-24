@@ -12,6 +12,8 @@ rsync
 pass
 zathura
 mpv
+papirus-icon-theme
+arc-theme
 
 nodejs
 npm
