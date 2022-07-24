@@ -1,13 +1,18 @@
 #!/bin/sh
 
-# dbus session
+# dbus session (non systemd if dbus needed)
 #if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
 #    eval `dbus-launch --sh-syntax --exit-with-session`
 #fi
 
-# set runtime dir
-unset XDG_RUNTIME_DIR
-export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXXXXXXXXX)
+# set runtime dir (non systemd)
+#unset XDG_RUNTIME_DIR
+#export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXXXXXXXXX)
+
+# dbus session address with systemd
+if [ ! -z "$(which systemd)" ]; then
+		export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
+fi
 
 # set im method
 #export GTK_IM_MODULE=fcitx
@@ -26,20 +31,29 @@ xet -s off &
 setxkbmap -layout us,ru -option -option grp:win_space_toggle &
 
 
-
 _monitor_connected () { ! [ -z "$(xrandr | grep "$1 connected")" ]; }
 
+if [ "$(uname)" = Linux ]; then
+		mon1="HDMI-0"
+		mon2="DVI-0"
+		mon3="eDP-1"
+fi
 
-if _monitor_connected "HDMI-1" && _monitor_connected "DVI-I-1"; then
-    xrandr --output HDMI-1 --mode 1920x1080 --rate 60.0*+ --primary \
+if [ "$(uname)" = OpenBSD ]; then
+		mon1="HDMI-1"
+		mon2="DVI-I-1"
+		mon3="eDP-1"
+fi
+
+if _monitor_connected $mon1 && _monitor_connected $mon2; then
+    xrandr --output $mon1 --mode 1920x1080 --rate 60.0*+ --primary \
 					 --brightness 1.0 --gamma 0.76:0.75:0.68 \
-					 --output DVI-I-1 --mode 1920x1080 --rate 60.0*+ --right-of HDMI-1 --rotate left \
+					 --output $mon2 --mode 1920x1080 --rate 60.0*+ --right-of $mon1 --rotate left \
 					 --brightness 1.0 --gamma 0.76:0.75:0.68
 fi
 
-
-if _monitor_connected "eDP-1"; then
-		xrandr --output eDP-1 --mode 1920x1080 --rate 60.01*+ \
+if _monitor_connected $mon3; then
+		xrandr --output $mon3 --mode 1920x1080 --rate 60.01*+ \
 					 --brightness 1.0 --gamma 0.76:0.75:0.68
 fi
 
@@ -48,4 +62,3 @@ exec xterm -name termbar -class termbar -T termbar -e \
 		 "$HOME"/.local/bin/termbar &
 
 exec cwm -c "$XDG_CONFIG_HOME"/cwmrc
-#exec bspwm

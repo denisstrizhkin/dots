@@ -1,0 +1,62 @@
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTFILE="$HOME"/.local/cache/ksh_hist
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+P="\033["
+KNRM="${P}0m"
+KRED="${P}1;31m"
+KGRN="${P}1;32m"
+KYEL="${P}1;33m"
+KBLU="${P}1;34m"
+KMAG="${P}1;35m"
+KCYN="${P}1;36m"
+KWHT="${P}1;37m"
+
+PS1="$(printf "╦═ %b$(whoami)%b@%b$(hostname) \
+%b\${PWD}%b\n╚═══> " "$KMAG" "$KNRM" "$KGRN" "$KMAG" "$KNRM")"
+
+if [ -f "$HOME"/.config/shell/exportrc ]; then
+		. "$HOME"/.config/shell/exportrc
+fi
+		
+if [ -f "$XDG_CONFIG_HOME"/shell/aliasrc ]; then
+    . "$XDG_CONFIG_HOME"/shell/aliasrc
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+# start x11 on OpenBSD
+if [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/ttyC0 ]; then
+    exec startx "$XDG_CONFIG_HOME"/x11/xinitrc
+fi
+
+# start x11 on Linux
+if [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; then
+    exec startx "$XDG_CONFIG_HOME"/x11/xinitrc
+fi
