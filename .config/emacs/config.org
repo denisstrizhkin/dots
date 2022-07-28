@@ -150,7 +150,7 @@
 
 (setq-default tab-width 2)
 (setq-default standard-indent 2)
-(setq-default ident-tabs-mode nil) ; disable tabs
+(setq-default indent-tabs-mode nil) ; disable tabs
 #+END_SRC
 
 *** which-key setup
@@ -221,32 +221,48 @@
 ; lsp-mode yasnippet lsp-treemacs helm-lsp projectile hydra flycheck company avy which-key helm-xref dap-mode zenburn-theme json-mode
 (use-package json-mode)
 
+(use-package flycheck
+  :init (global-flycheck-mode))
+
+(use-package tree-sitter
+  :config
+  (global-tree-sitter-mode)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+(use-package tree-sitter-langs)
+
 (use-package lsp-mode
-	:init
-	(setq lsp-keymap-prefix "C-c l")
-	:config
-	(setq gc-cons-threshold (* 100 1024 1024)
-				read-process-output-max (* 1024 1024)
-				create-lockfiles nil)
-	(with-eval-after-load 'js
-		 (define-key js-mode-map (kbd "M-.") nil))
-	:hook (
-				 (prog-mode . lsp)
-				 (lsp-mode . lsp-enable-which-key-integration))
-	:commands lsp)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (setq gc-cons-threshold (* 100 1024 1024)
+        read-process-output-max (* 1024 1024)
+        create-lockfiles nil)
+  (setq lsp-javascript-format-enable nil
+        lsp-javascript-suggestion-actions-enabled nil
+        lsp-javascript-validate-enable nil)
+  (with-eval-after-load 'js
+    (define-key js-mode-map (kbd "M-.") nil))
+  :hook (
+         (prog-mode . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
 
 (use-package dap-mode
-	:config
-		(with-eval-after-load 'lsp-mode
-		 (require 'dap-chrome)))
+  :config
+  (with-eval-after-load 'lsp-mode
+    (require 'dap-chrome)))
+
 (use-package lsp-ui
-	:config
-	(setq lsp-ui-sideline-show-diagnostics t
-				lsp-ui-sideline-show-hover t
-				lsp-ui-sideline-update-mode 'line
-				lsp-ui-sideline-delay 0.1)
-	:commands lsp-ui-mode)
-(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+  :config
+  (setq lsp-ui-sideline-show-code-actions t
+        lsp-ui-sideline-show-diagnostics t
+        lsp-ui-sideline-show-hover t
+        lsp-ui-sideline-update-mode 'line
+        lsp-ui-sideline-delay 0.1)
+  :commands lsp-ui-mode)
+
+(use-package helm-lsp
+  :commands helm-lsp-workspace-symbol)
 #+END_SRC
 		
 *** helm-mode
@@ -259,7 +275,12 @@
 	(global-set-key (kbd "C-x C-f") 'helm-find-files)
 	(helm-mode 1))
 #+END_SRC
-	 
+
+*** js-mode
+#+BEGIN_SRC emacs-lisp :results none
+(setq js-indent-level 2)
+#+END_SRC
+
 *** sql-mode
 #+BEGIN_SRC emacs-lisp :results none
 (add-hook 'sql-mode-hook (lambda ()
@@ -301,23 +322,23 @@
 	(setq web-mode-enable-auto-pairing t)
 	(setq web-mode-enable-css-colorization t)
 )
-(use-package web-mode
-  :mode (
-	 ("\\.tsx?\\'" . web-mode)
-	 ("\\.html\\'" . web-mode)
-	 ("\\.py\\'" . web-mode)
-	 ("\\.css\\'" . web-mode))
-	:config
-	(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
-  :commands web-mode
-	:hook (web-mode . my/webmode-hook))
+(setq css-indent-offset 2)
+;(use-package web-mode
+;  :mode (
+;   ("\\.jsx?\\'" . web-mode)
+;	 ("\\.tsx?\\'" . web-mode)
+;	 ("\\.html\\'" . web-mode)
+;	 ("\\.py\\'" . web-mode)
+;	 ("\\.css\\'" . web-mode))
+;	:config
+;	(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
+;  :commands web-mode
+;	:hook (web-mode . my/webmode-hook))
 
 (use-package emmet-mode
   :config
-  (add-hook 'web-mode-hook 'emmet-mode))
-;	(add-hook 'emmet-mode-hook
-;          (lambda ()
-;            (define-key emmet-mode-keymap (kbd "C-j") 'emmet-expand-line))))
+  (add-hook 'js-mode-hook 'emmet-mode)
+  (add-hook 'mhtml-mode 'emmet-mode))
 #+END_SRC
 
 *** java-mode setup
