@@ -32,34 +32,20 @@
 
 *** Theme
 #+BEGIN_SRC emacs-lisp
-  (defun true-color-p ()
-    ;; always true colors
-    1) 
+(defun true-color-p ()
+  ;; always true colors
+  1)
 
-  (defun styling/load-theme (frame)
-    ;; set theme
-    (select-frame frame)
-		(load-theme 'zenburn t))
-  
-;  (use-package modus-themes
-;    :init
-;    ;; Add all your customizations prior to loading the themes
-;    (setq modus-themes-italic-constructs t
-;	  modus-themes-bold-constructs nil
-;	  modus-themes-region '(bg-only no-extend)
-;	  modus-themes-org-blocks 'gray-background)
-;
-;    ;; Load the theme files before enabling a theme
-;    (modus-themes-load-themes)
-;    :config
-;    ;; Load the theme of your choice:
-;    (add-hook 'after-make-frame-functions #'styling/load-theme)
-;    (modus-themes-load-vivendi) ;; OR (modus-themes-load-operandi)
-;    :bind ("<f5>" . modus-themes-toggle))
+(defun styling/load-theme (frame)
+  ;; set theme
+  (select-frame frame)
+  (load-theme 'zenburn t))
+
 (use-package zenburn-theme
-	:config
-	(load-theme 'zenburn t)
-	(add-hook 'after-make-frame-functions #'styling/load-theme))
+  :config
+  (load-theme 'zenburn t))
+
+(add-hook 'after-make-frame-functions #'styling/load-theme)
 #+END_SRC
 
 *** Set utf-8 encoding
@@ -190,7 +176,7 @@
    :config
    (setq openwith-associations (list
 				(list (openwith-make-extension-regexp
-				       '("m4v" "mp4" "MP4" "MTS" "mpg" "mov" "avi" "AVI" "flv" "mkv"))
+				       '("m4v" "mp4" "MP4" "MTS" "mpg" "mov" "avi" "AVI" "flv" "mkv" "webm"))
 				      "mpv"
 				      '(file))
 				(list (openwith-make-extension-regexp
@@ -351,6 +337,14 @@
   (diminish 'emmet-mode)
   (add-hook 'js-mode-hook 'emmet-mode)
   (add-hook 'mhtml-mode 'emmet-mode))
+#+END_SRC
+
+*** python-mode setup
+#+BEGIN_SRC emacs-lisp :results none
+(use-package pyvenv
+  :config
+  (setq pyvenv-workon "emacs")  ; Default venv
+  (pyvenv-tracking-mode 1))
 #+END_SRC
 
 *** java-mode setup

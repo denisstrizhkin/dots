@@ -24,10 +24,10 @@ export NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuch-config
 
 # path
 export PATH="$PATH:$HOME"/.local/bin
-export PATH="$PATH:$HOME"/.local/bin/simple-dwm-bar
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME"/.local/lib
 export PATH="$PATH:$HOME"/.cargo/bin
-export PATH="$PATH:$HOME"/.local/bin/my_scripts
 export PATH="$PATH:"/usr/local/jdk-17/bin
+export LAMMPS_POTENTIALS="$HOME"/.local/share/lammps/potentials
 
 
 export VIM_LATEX_FOLDER="$HOME"/Documents/latex/vimlatex
