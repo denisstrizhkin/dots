@@ -33,11 +33,11 @@
 *** Theme
 #+BEGIN_SRC emacs-lisp :results none
 (defun true-color-p ()
-  ;; always true colors
+  "Always true colors."
   1)
 
 (defun styling/load-theme (frame)
-  ;; set theme
+  "Set theme."
   (select-frame frame)
   (load-theme 'zenburn t))
 
@@ -66,19 +66,23 @@
      (set-frame-font "DejaVu Sans Mono" t t))
 
    ;; emoji font
-   (when (member "Noto Emoji" (font-family-list))
-     (set-fontset-font t nil "Noto Emoji"))
+   (when (member "Noto Color Emoji" (font-family-list))
+     (set-fontset-font t 'symbol "Noto Color Emoji"))
 
    ;; japanese font
    (when (member "VL Gothic" (font-family-list))
      (set-fontset-font t 'kana "VL Gothic")
-     (set-fontset-font t 'han  "VL Gothic")))
+     (set-fontset-font t 'han  "VL Gothic")
+     (set-fontset-font t 'cjk-misc "VL Gothic")))
 
  (add-hook 'after-init-hook 'styling/set-fonts)
  (add-hook 'server-after-make-frame-hook 'styling/set-fonts)
 
- (use-package emojify
-   :hook (after-init . global-emojify-mode))
+(use-package emojify
+  :config
+  (setq emojify-display-style 'unicode)
+  (setq emojify-emoji-styles '(unicode))
+  (bind-key* (kbd "C-c .") #'emojify-insert-emoji):hook (after-init . global-emojify-mode))
  #+END_SRC
 
 *** Disable some ui features
@@ -122,6 +126,8 @@
 
 *** org-drill
 #+BEGIN_SRC emacs-lisp :results none
+(use-package org)
+
 (use-package org-drill
   :config
   (setq org-drill-add-random-noise-to-intervals-p t)
@@ -159,7 +165,7 @@
 *** Indentation
 #+BEGIN_SRC emacs-lisp :results none
 ;; Disable electric-indent mode.
-(electric-indent-mode 1)
+(electric-indent-mode nil)
 ;(add-hook 'electric-indent-mode-hook
 ;					(lambda ()
 ;						(define-key global-map (kbd "C-j") nil)))
