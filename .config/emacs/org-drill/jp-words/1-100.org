@@ -1,0 +1,33 @@
+# -*- mode: org; coding: utf-8 -*-
+#+STARTUP: showall
+
+* Most used Japanese words 1-100
+
+** Word #1 :drill:
+   :PROPERTIES:
+   :ID:       5b9d1112-25b8-41ad-a7d2-c203d752f9ca
+   :DRILL_LAST_INTERVAL: 0.0
+   :DRILL_REPEATS_SINCE_FAIL: 1
+   :DRILL_TOTAL_REPEATS: 10
+   :DRILL_FAILURE_COUNT: 10
+   :DRILL_AVERAGE_QUALITY: 0.0
+   :DRILL_EASE: 2.5
+   :DRILL_LAST_QUALITY: 0
+   :DRILL_LAST_REVIEWED: [2022-08-08 Mon 17:19]
+   :END:
+
+Verb - go
+
+*** Answer
+
+行く [いく]
+
+
+** Word #2 :drill:
+
+Verb - see, look at
+
+*** Answer
+
+見る [みる]
+

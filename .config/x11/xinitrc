@@ -15,13 +15,15 @@ if [ ! -z "$(which systemd)" ]; then
 fi
 
 # set im method
-#export GTK_IM_MODULE=fcitx
-#export QT_IM_MODULE=fcitx
-#export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
 
 mpd &
 
 emacs --daemon &
+
+fcitx5 &
 
 xrdb -merge "$XDG_CONFIG_HOME"/x11/xresources
 

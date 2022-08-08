@@ -6,6 +6,7 @@ alias rm="rm -iv"
 alias tmux="tmux -f \"$XDG_CONFIG_HOME\"/tmux.conf"
 alias mbsync="mbsync -c \"$XDG_CONFIG_HOME\"/mbsyncrc"
 alias notmuch-clean="notmuch search --output=files --format=text0 tag:killed | xargs -r0 rm; notmuch new"
+alias notmuch-sync="mbsync -a; notmuch new"
 
 alias ect="emacsclient -t"
 

@@ -19,7 +19,7 @@
 #+END_SRC
 
 *** use-package setup
-#+BEGIN_SRC emacs-lisp  :results none
+#+BEGIN_SRC emacs-lisp :results none
 ;; Install use-package
 (straight-use-package 'use-package)
 
@@ -31,7 +31,7 @@
 ** Visual Experience
 
 *** Theme
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 (defun true-color-p ()
   ;; always true colors
   1)
@@ -99,6 +99,7 @@
 *** Input methods
 #+BEGIN_SRC emacs-lisp :results none
 (setq default-input-method "russian-computer")
+(require 'mozc)
 #+END_SRC
 
 *** Line wrapping
@@ -118,6 +119,31 @@
 #+END_SRC
 
 ** Quality Of Life
+
+*** org-drill
+#+BEGIN_SRC emacs-lisp :results none
+(use-package org-drill
+  :config
+  (setq org-drill-add-random-noise-to-intervals-p t)
+  (setq org-drill-hint-separator "||")
+  (setq org-drill-left-cloze-delimiter "<[")
+  (setq org-drill-right-cloze-delimiter "]>")
+  (setq org-drill-learn-fraction 0.25))
+
+(defun my/org-drill-add-word()
+  "Add word to org-drill buffer."
+  (interactive)
+  (end-of-line)
+  (let ($word-num $part-of-speech $defenition $answer)
+    (setq $word-num (read-string "Enter word number: "))
+    (setq $part-of-speech (read-string "Enter part of speech: "))
+    (setq $defenition (read-string "Enter defenition: "))
+    (setq $answer (read-string "Enter answer: "))
+    (insert (format "\n** Word #%s :drill:\n" $word-num))
+    (insert (format "\n%s - %s\n" $part-of-speech $defenition))
+    (insert "\n*** Answer\n\n")
+    (insert $answer)))
+#+END_SRC
 
 *** diminish
 #+BEGIN_SRC emacs-lisp :results none
@@ -345,11 +371,17 @@
   :config
   (setq pyvenv-workon "emacs")  ; Default venv
   (pyvenv-tracking-mode 1))
+
+(setq lsp-pylsp-plugins-pydocstyle-enabled nil)
+(setq lsp-pylsp-plugins-autopep8-enabled t)
 #+END_SRC
 
 *** java-mode setup
 #+BEGIN_SRC emacs-lisp :results none
 		(show-paren-mode 1)
+
+(use-package lsp-java
+:config (add-hook 'java-mode-hook 'lsp))
 
 		(add-hook 'java-mode-hook (lambda ()
 							(setq c-basic-offset 2)
