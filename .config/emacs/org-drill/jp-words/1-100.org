@@ -22,7 +22,6 @@ Verb - go
 
 行く [いく]
 
-
 ** Word #2 :drill:
 
 Verb - see, look at
@@ -31,3 +30,67 @@ Verb - see, look at
 
 見る [みる]
 
+** Word #3 :drill:
+
+Adjective - a lot of, many
+
+*** Answer
+
+多い [おおい]
+
+** Word #4 :drill:
+
+Noun - home, household
+
+*** Answer
+
+家 [うち]
+
+** Word #5 :drill:
+
+Pronoun - this, this one
+
+*** Answer
+
+これ
+
+** Word #6 :drill:
+
+Pronoun - that, that one
+
+*** Answer
+
+それ
+
+** Word #7 :drill:
+
+Pronoun - I (general)
+
+*** Answer
+
+私 [わたし]
+
+
+** Word #8 :drill:
+
+Verbal Noun - work, job
+
+*** Answer
+
+仕事 [しごと]
+ 
+** Word #9 :drill:
+
+Interrogative - when
+
+*** Answer
+
+いつ
+
+** Word #10 :drill:
+
+Verb - do, make
+
+*** Answer
+
+する

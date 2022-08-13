@@ -126,7 +126,7 @@
 
 *** org-drill
 #+BEGIN_SRC emacs-lisp :results none
-(use-package org)
+(straight-use-package 'org)
 
 (use-package org-drill
   :config
