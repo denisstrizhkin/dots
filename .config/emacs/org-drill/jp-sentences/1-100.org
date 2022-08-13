@@ -1,0 +1,221 @@
+# -*- mode: org; coding: utf-8 -*-
+#+STARTUP: showall
+
+* Most used Japanese words 1-100 (sentences)
+
+** Sentence #1a                                                       :drill:
+   :PROPERTIES:
+   :ID:       372490bf-cca7-4b38-92dd-b3e408f45d06
+   :DRILL_LAST_INTERVAL: 0.0
+   :DRILL_REPEATS_SINCE_FAIL: 1
+   :DRILL_TOTAL_REPEATS: 2
+   :DRILL_FAILURE_COUNT: 2
+   :DRILL_AVERAGE_QUALITY: 0.0
+   :DRILL_EASE: 2.5
+   :DRILL_LAST_QUALITY: 0
+   :DRILL_LAST_REVIEWED: [2022-08-13 Sat 23:05]
+   :END:
+
+I go to the library on Sundays.
+
+*** Answer
+
+日曜日は図書館に行きます。
+にちようび は としょかん に いきます。
+
+** Sentence #1b :drill:
+   :PROPERTIES:
+   :ID:       66d8b09b-14f9-450f-8dbf-48dc27f3facf
+   :DRILL_LAST_INTERVAL: 0.0
+   :DRILL_REPEATS_SINCE_FAIL: 1
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 1
+   :DRILL_AVERAGE_QUALITY: 0.0
+   :DRILL_EASE: 2.5
+   :DRILL_LAST_QUALITY: 0
+   :DRILL_LAST_REVIEWED: [2022-08-13 Sat 23:05]
+   :END:
+
+I went to the pool during summer vacation.
+
+*** Answer
+
+私は夏休みにプールに行った。
+わたし は なつやすみ に プール に いった。
+
+** Sentence #2a :drill:
+   :PROPERTIES:
+   :ID:       a4f09ee6-938e-41a7-bd67-c3319b073dfe
+   :DRILL_LAST_INTERVAL: 0.0
+   :DRILL_REPEATS_SINCE_FAIL: 1
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 1
+   :DRILL_AVERAGE_QUALITY: 0.0
+   :DRILL_EASE: 2.5
+   :DRILL_LAST_QUALITY: 0
+   :DRILL_LAST_REVIEWED: [2022-08-13 Sat 23:05]
+   :END:
+
+I like looking at pictures.
+
+*** Answer
+
+私は絵を見るのが好きです。
+わたし は え を みる の が すき です。
+
+** Sentence #2b :drill:
+
+I saw a movie after work.
+
+*** Answer
+
+仕事のあと、映画を見た。
+しごと の あと、 えいが を みた。
+
+** Sentence #3a :drill:
+
+There are a lot of temples in Kyoto.
+
+*** Answer
+
+京都にはお寺が多い。
+きょうと に は おてら が おおい。
+
+** Sentence #3b :drill:
+
+There are many cars on this road.
+
+*** Answer
+
+この道は車が多い。
+この みち は くるま が おおい。
+
+** Sentence #4a :drill:
+
+Please come over to my home.
+
+*** Answer
+
+家に遊びにきてください。
+うち に あそび に きて ください。
+
+** Sentence #4b :drill:
+
+I went to my grandma's house during summer vacation.
+
+*** Answer
+
+夏休みにお祖母ちゃんの家へ行きました。
+なつやすみ に おばあちゃん の うち へ いきました。
+
+** Sentence #5a :drill:
+
+I'll have this please.
+
+*** Answer
+
+これをください。
+これ を ください。
+
+
+** Sentence #5b :drill:
+
+Is this your bag?
+
+*** Answer
+
+これはあなたの鞄ですか。
+これ は あなた の かばん です か。
+
+
+** Sentence #6a :drill:
+
+That's a really nice story.
+
+*** Answer
+
+それはとてもいい話だ。
+それ は とても いい はなし だ。
+
+** Sentence #6b :drill:
+
+Please give me that one.
+
+*** Answer
+
+それを一つください。
+それ を ひとつ ください。
+
+** Sentence #7a :drill:
+
+I'll go.
+
+*** Answer
+
+私が行きましょう。
+わたし が いきましょう。
+
+** Sentence #7b :drill:
+
+I drink coffee every morning.
+
+*** Answer
+
+私は毎朝コーヒーを飲みます。
+わたし は まいあさ コーヒー を のみます。
+
+
+** Sentence #8a :drill:
+
+I'm busy at work in March.
+
+*** Answer
+
+3月は仕事が忙しい。
+3 がつ は しごと が いそがしい。
+
+** Sentence #8b :drill:
+
+I saw a movie after work.
+
+*** Answer
+
+仕事のあと、映画を見た。
+しごと の あと、 えいが を みた。
+
+
+** Sentence #9a :drill:
+
+When is she coming?
+
+*** Answer
+
+彼女はいつ来ますか。
+かのじょ は いつ きます か。
+
+** Sentence #9b :drill:
+
+When shall we meet again?
+
+*** Answer
+
+次はいつ会いましょうか。
+つぎ は いつ あいましょう か。
+
+** Sentence #10a :drill:
+
+I did my homework with my friend.
+
+*** Answer
+
+友達と一緒に宿題をした。
+ともだち と いっしょ に しゅくだい を した。
+
+** Sentence #10b :drill:
+
+The boys are playing soccer.
+
+*** Answer
+
+男の子たちがサッカーをしている。
+おとこのこ たち が サッカー を して いる 。

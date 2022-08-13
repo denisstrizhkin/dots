@@ -4,16 +4,17 @@
 * Most used Japanese words 1-100
 
 ** Word #1 :drill:
+   SCHEDULED: <2022-08-17 Wed>
    :PROPERTIES:
    :ID:       5b9d1112-25b8-41ad-a7d2-c203d752f9ca
-   :DRILL_LAST_INTERVAL: 0.0
-   :DRILL_REPEATS_SINCE_FAIL: 1
-   :DRILL_TOTAL_REPEATS: 10
-   :DRILL_FAILURE_COUNT: 10
-   :DRILL_AVERAGE_QUALITY: 0.0
-   :DRILL_EASE: 2.5
-   :DRILL_LAST_QUALITY: 0
-   :DRILL_LAST_REVIEWED: [2022-08-08 Mon 17:19]
+   :DRILL_LAST_INTERVAL: 3.947
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 12
+   :DRILL_FAILURE_COUNT: 11
+   :DRILL_AVERAGE_QUALITY: 0.417
+   :DRILL_EASE: 2.36
+   :DRILL_LAST_QUALITY: 3
+   :DRILL_LAST_REVIEWED: [2022-08-13 Sat 22:34]
    :END:
 
 Verb - go
@@ -23,6 +24,18 @@ Verb - go
 行く [いく]
 
 ** Word #2 :drill:
+   SCHEDULED: <2022-08-18 Thu>
+   :PROPERTIES:
+   :ID:       c19fba58-2d8a-4218-85ea-8112bcf7d5f7
+   :DRILL_LAST_INTERVAL: 4.7596
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 4.0
+   :DRILL_EASE: 2.5
+   :DRILL_LAST_QUALITY: 4
+   :DRILL_LAST_REVIEWED: [2022-08-13 Sat 22:36]
+   :END:
 
 Verb - see, look at
 
@@ -31,6 +44,18 @@ Verb - see, look at
 見る [みる]
 
 ** Word #3 :drill:
+   SCHEDULED: <2022-08-17 Wed>
+   :PROPERTIES:
+   :ID:       73a4d68e-a105-491d-b06a-be98e312bb28
+   :DRILL_LAST_INTERVAL: 4.0163
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 4.0
+   :DRILL_EASE: 2.5
+   :DRILL_LAST_QUALITY: 4
+   :DRILL_LAST_REVIEWED: [2022-08-13 Sat 22:38]
+   :END:
 
 Adjective - a lot of, many
 
@@ -39,6 +64,18 @@ Adjective - a lot of, many
 多い [おおい]
 
 ** Word #4 :drill:
+   SCHEDULED: <2022-08-17 Wed>
+   :PROPERTIES:
+   :ID:       67fb3fc1-4ad2-4127-9e88-094fe196ab36
+   :DRILL_LAST_INTERVAL: 3.6417
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 3.0
+   :DRILL_EASE: 2.36
+   :DRILL_LAST_QUALITY: 3
+   :DRILL_LAST_REVIEWED: [2022-08-13 Sat 22:35]
+   :END:
 
 Noun - home, household
 
@@ -47,6 +84,18 @@ Noun - home, household
 家 [うち]
 
 ** Word #5 :drill:
+   SCHEDULED: <2022-08-17 Wed>
+   :PROPERTIES:
+   :ID:       8220d2ce-bbac-436c-929d-7b06d3f76c49
+   :DRILL_LAST_INTERVAL: 4.0236
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 5.0
+   :DRILL_EASE: 2.6
+   :DRILL_LAST_QUALITY: 5
+   :DRILL_LAST_REVIEWED: [2022-08-13 Sat 22:37]
+   :END:
 
 Pronoun - this, this one
 
@@ -55,6 +104,18 @@ Pronoun - this, this one
 これ
 
 ** Word #6 :drill:
+   SCHEDULED: <2022-08-17 Wed>
+   :PROPERTIES:
+   :ID:       e717f693-2b7b-4a72-8801-dcca57bd89fd
+   :DRILL_LAST_INTERVAL: 4.4371
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 2
+   :DRILL_FAILURE_COUNT: 1
+   :DRILL_AVERAGE_QUALITY: 3.5
+   :DRILL_EASE: 2.6
+   :DRILL_LAST_QUALITY: 5
+   :DRILL_LAST_REVIEWED: [2022-08-13 Sat 22:39]
+   :END:
 
 Pronoun - that, that one
 
@@ -63,6 +124,18 @@ Pronoun - that, that one
 それ
 
 ** Word #7 :drill:
+   SCHEDULED: <2022-08-18 Thu>
+   :PROPERTIES:
+   :ID:       52afc99c-231e-457c-a7df-1f6df50aeef0
+   :DRILL_LAST_INTERVAL: 5.3429
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 4.0
+   :DRILL_EASE: 2.5
+   :DRILL_LAST_QUALITY: 4
+   :DRILL_LAST_REVIEWED: [2022-08-13 Sat 22:36]
+   :END:
 
 Pronoun - I (general)
 
@@ -72,6 +145,18 @@ Pronoun - I (general)
 
 
 ** Word #8 :drill:
+   SCHEDULED: <2022-08-17 Wed>
+   :PROPERTIES:
+   :ID:       e56c591b-9805-4baa-ba9c-3dbe89969ab6
+   :DRILL_LAST_INTERVAL: 4.0324
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 4.0
+   :DRILL_EASE: 2.5
+   :DRILL_LAST_QUALITY: 4
+   :DRILL_LAST_REVIEWED: [2022-08-13 Sat 22:39]
+   :END:
 
 Verbal Noun - work, job
 
@@ -80,6 +165,18 @@ Verbal Noun - work, job
 仕事 [しごと]
  
 ** Word #9 :drill:
+   SCHEDULED: <2022-08-18 Thu>
+   :PROPERTIES:
+   :ID:       4c649cdd-e6d8-45c1-bb4b-c2b01ec7f522
+   :DRILL_LAST_INTERVAL: 4.6341
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 5.0
+   :DRILL_EASE: 2.6
+   :DRILL_LAST_QUALITY: 5
+   :DRILL_LAST_REVIEWED: [2022-08-13 Sat 22:37]
+   :END:
 
 Interrogative - when
 
@@ -88,6 +185,18 @@ Interrogative - when
 いつ
 
 ** Word #10 :drill:
+   SCHEDULED: <2022-08-18 Thu>
+   :PROPERTIES:
+   :ID:       d024b618-d04c-4a10-9286-7355f939a77d
+   :DRILL_LAST_INTERVAL: 4.5977
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 4.0
+   :DRILL_EASE: 2.5
+   :DRILL_LAST_QUALITY: 4
+   :DRILL_LAST_REVIEWED: [2022-08-13 Sat 22:37]
+   :END:
 
 Verb - do, make
 

@@ -149,6 +149,19 @@
     (insert (format "\n%s - %s\n" $part-of-speech $defenition))
     (insert "\n*** Answer\n\n")
     (insert $answer)))
+
+(defun my/org-drill-add-sentence()
+  "Add sentence to org-drill buffer."
+  (interactive)
+  (end-of-line)
+  (let ($sentence-num $sentence $furigana $translation)
+    (setq $sentence-num (read-string "Enter sentence number: "))
+    (setq $sentence (read-string "Enter sentence: "))
+    (setq $furigana (read-string "Enter furigana: "))
+    (setq $translation (read-string "Enter translation: "))
+    (insert (format "\n** Sentence #%s :drill:\n" $sentence-num))
+    (insert (format "\n%s\n" $translation))
+    (insert (format "\n*** Answer\n\n%s\n%s" $sentence $furigana))))
 #+END_SRC
 
 *** diminish
