@@ -203,3 +203,203 @@ Verb - do, make
 *** Answer
 
 する
+
+** Word #11 :drill:
+   SCHEDULED: <2022-08-21 Sun>
+   :PROPERTIES:
+   :ID:       52fd2b95-b4fe-4861-be93-1e1f5147ad89
+   :DRILL_LAST_INTERVAL: 4.9675
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 5.0
+   :DRILL_EASE: 2.6
+   :DRILL_LAST_QUALITY: 5
+   :DRILL_LAST_REVIEWED: [2022-08-16 Tue 13:05]
+   :END:
+
+Verb - go out, leave
+
+*** Answer
+
+出る [でる]
+
+** Word #12 :drill:
+   SCHEDULED: <2022-08-20 Sat>
+   :PROPERTIES:
+   :ID:       65df844a-3bda-4673-a02d-86c699a25dfc
+   :DRILL_LAST_INTERVAL: 4.2836
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 3.0
+   :DRILL_EASE: 2.36
+   :DRILL_LAST_QUALITY: 3
+   :DRILL_LAST_REVIEWED: [2022-08-16 Tue 13:06]
+   :END:
+
+Verb - use, make use of
+
+*** Answer
+
+使う [つかう]
+
+** Word #13 :drill:
+   SCHEDULED: <2022-08-20 Sat>
+   :PROPERTIES:
+   :ID:       60dd152b-14a4-4a3e-8af2-b011f531f750
+   :DRILL_LAST_INTERVAL: 3.8159
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 5.0
+   :DRILL_EASE: 2.6
+   :DRILL_LAST_QUALITY: 5
+   :DRILL_LAST_REVIEWED: [2022-08-16 Tue 13:07]
+   :END:
+
+Noun - place
+
+*** Answer
+
+所 [ところ]
+
+** Word #14 :drill:
+   SCHEDULED: <2022-08-21 Sun>
+   :PROPERTIES:
+   :ID:       23e97dfd-de05-43a1-b42c-47c667ef8615
+   :DRILL_LAST_INTERVAL: 4.6249
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 5.0
+   :DRILL_EASE: 2.6
+   :DRILL_LAST_QUALITY: 5
+   :DRILL_LAST_REVIEWED: [2022-08-16 Tue 13:04]
+   :END:
+
+Verb - make, create
+
+*** Answer
+
+作る [つくる]
+
+** Word #15 :drill:
+   SCHEDULED: <2022-08-20 Sat>
+   :PROPERTIES:
+   :ID:       f9b74dc2-4082-462a-a52a-e2114018d0d6
+   :DRILL_LAST_INTERVAL: 3.776
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 2
+   :DRILL_FAILURE_COUNT: 1
+   :DRILL_AVERAGE_QUALITY: 2.0
+   :DRILL_EASE: 2.5
+   :DRILL_LAST_QUALITY: 4
+   :DRILL_LAST_REVIEWED: [2022-08-16 Tue 13:08]
+   :END:
+
+Verb - think
+
+*** Answer
+
+思う [おもう]
+
+** Word #16 :drill:
+   SCHEDULED: <2022-08-19 Fri>
+   :PROPERTIES:
+   :ID:       d2cbd1f9-5516-4238-91eb-8a560d996526
+   :DRILL_LAST_INTERVAL: 3.2816
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 3.0
+   :DRILL_EASE: 2.36
+   :DRILL_LAST_QUALITY: 3
+   :DRILL_LAST_REVIEWED: [2022-08-16 Tue 13:07]
+   :END:
+
+Verb - have, possess
+
+*** Answer
+
+持つ [もつ]
+
+** Word #17 :drill:
+   SCHEDULED: <2022-08-20 Sat>
+   :PROPERTIES:
+   :ID:       c6d09be0-a726-4e25-8d25-4ccbc00ee7f1
+   :DRILL_LAST_INTERVAL: 4.1437
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 5.0
+   :DRILL_EASE: 2.6
+   :DRILL_LAST_QUALITY: 5
+   :DRILL_LAST_REVIEWED: [2022-08-16 Tue 13:03]
+   :END:
+
+Verb - buy
+
+*** Answer
+
+買う [かう]
+
+** Word #18 :drill:
+   SCHEDULED: <2022-08-20 Sat>
+   :PROPERTIES:
+   :ID:       ea862a46-21f7-4a51-b726-f09474f2248e
+   :DRILL_LAST_INTERVAL: 4.0761
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 5.0
+   :DRILL_EASE: 2.6
+   :DRILL_LAST_QUALITY: 5
+   :DRILL_LAST_REVIEWED: [2022-08-16 Tue 13:05]
+   :END:
+
+Noun - time, hour
+
+*** Answer
+
+時間 [じかん]
+
+** Word #19 :drill:
+   SCHEDULED: <2022-08-20 Sat>
+   :PROPERTIES:
+   :ID:       42c2db5c-2dd8-44f9-afd3-1afdec42074d
+   :DRILL_LAST_INTERVAL: 4.0682
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 5.0
+   :DRILL_EASE: 2.6
+   :DRILL_LAST_QUALITY: 5
+   :DRILL_LAST_REVIEWED: [2022-08-16 Tue 13:07]
+   :END:
+
+Verb - know
+
+*** Answer
+
+知る [しる]
+
+** Word #20 :drill:
+   SCHEDULED: <2022-08-21 Sun>
+   :PROPERTIES:
+   :ID:       24e676e8-e09c-46bc-adfb-6443215479ea
+   :DRILL_LAST_INTERVAL: 4.8215
+   :DRILL_REPEATS_SINCE_FAIL: 2
+   :DRILL_TOTAL_REPEATS: 1
+   :DRILL_FAILURE_COUNT: 0
+   :DRILL_AVERAGE_QUALITY: 5.0
+   :DRILL_EASE: 2.6
+   :DRILL_LAST_QUALITY: 5
+   :DRILL_LAST_REVIEWED: [2022-08-16 Tue 13:05]
+   :END:
+
+Adjectival Noun - same, identical
+
+*** Answer
+
+同じ [おなじ]

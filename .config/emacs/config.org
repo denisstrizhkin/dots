@@ -26,6 +26,12 @@
 ;; Configure use-package to use straight.el by default
 (use-package straight
   :custom (straight-use-package-by-default t))
+
+(use-package org
+  :straight (org :host github
+                 :repo "emacs-straight/org-mode"
+                 :local-repo "org"
+                 :depth full))
 #+END_SRC
 
 ** Visual Experience
@@ -126,10 +132,13 @@
 
 *** org-drill
 #+BEGIN_SRC emacs-lisp :results none
-(straight-use-package 'org)
-
 (use-package org-drill
-  :config
+  :straight (org-drill :type git
+                       :flavor melpa
+                       :host gitlab
+                       :repo "phillord/org-drill"
+                       :protocol https)
+  :config (require 'org-persist)
   (setq org-drill-add-random-noise-to-intervals-p t)
   (setq org-drill-hint-separator "||")
   (setq org-drill-left-cloze-delimiter "<[")
@@ -220,26 +229,30 @@
  (use-package openwith
    :config
    (setq openwith-associations (list
-				(list (openwith-make-extension-regexp
-				       '("m4v" "mp4" "MP4" "MTS" "mpg" "mov" "avi" "AVI" "flv" "mkv" "webm"))
-				      "mpv"
-				      '(file))
-				(list (openwith-make-extension-regexp
-				       '("mp3" "ogg"))
-				      "mpv"
-				      '(file))
-				(list (openwith-make-extension-regexp
-				       '("pdf"))
-				      "zathura"
-				      '(file))
-				(list (openwith-make-extension-regexp
-				       '("xls" "xlsx"))
-				      "libreoffice --calc"
-				      '(file))
-				(list (openwith-make-extension-regexp
-				       '("doc" "docx" "odt"))
-				      "libreoffice --writer"
-				      '(file))))
+        (list (openwith-make-extension-regexp
+               '("m4v" "mp4" "MP4" "MTS" "mpg" "mov" "avi" "AVI" "flv" "mkv" "webm"))
+              "mpv"
+              '(file))
+        (list (openwith-make-extension-regexp
+               '("mp3" "ogg"))
+              "mpv"
+              '(file))
+        (list (openwith-make-extension-regexp
+               '("pdf"))
+              "zathura"
+              '(file))
+        (list (openwith-make-extension-regexp
+               '("xls" "xlsx"))
+              "libreoffice --calc"
+              '(file))
+        (list (openwith-make-extension-regexp
+               '("doc" "docx" "odt"))
+              "libreoffice --writer"
+              '(file))
+         (list (openwith-make-extension-regexp
+                '("pptx"))
+               "libreoffice --impress"
+               '(file))))
    (openwith-mode 1))
  #+END_SRC
 
