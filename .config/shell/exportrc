@@ -21,9 +21,11 @@ export XDG_DATA_HOME="$HOME"/.local/share
 export XDG_CACHE_HOME="$HOME"/.cache
 export ENV="$XDG_CONFIG_HOME"/shell/kshrc
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuch-config
+export DOOMDIR="$XDG_CONFIG_HOME"/doom
 
 # path
 export PATH="$PATH:$HOME"/.local/bin
+export PATH="$PATH:$XDG_CONFIG_HOME"/emacs/bin
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME"/.local/lib
 export PATH="$PATH:$HOME"/.cargo/bin
 export PATH="$PATH:"/usr/local/jdk-17/bin
