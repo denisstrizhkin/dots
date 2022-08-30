@@ -32,6 +32,8 @@ xet -s off &
 
 setxkbmap -layout us,ru -option -option grp:win_space_toggle &
 
+google-drive-ocamlfuse "$HOME"/Desktop/GDrive
+
 
 _monitor_connected () { ! [ -z "$(xrandr | grep "$1 connected")" ]; }
 
